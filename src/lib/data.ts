@@ -15,7 +15,7 @@ export const PROFILE = {
 
 export const SKILLS = [
     { category: "AI & GenAI", items: ["RAG Systems", "LLMs (OpenAI, Anthropic)", "LangChain", "Vector Databases (Pinecone, Chroma)", "AI Agents", "Prompt Engineering"] },
-    { category: "AI Tools", items: ["Claude Code", "Cursor", "Antigravity", "V0", "Perplexity", "Midjourney"] },
+    { category: "AI Tools", items: ["Claude Code", "Cursor", "Antigravity", "Perplexity", "Midjourney"] },
     { category: "Full Stack", items: ["Python (FastAPI)", "Node.js", "React / Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"] },
     { category: "Cloud & DevOps", items: ["AWS (Lambda, Bedrock)", "Docker", "CI/CD", "Serverless", "System Architecture"] }
 ];

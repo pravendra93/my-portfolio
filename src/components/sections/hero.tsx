@@ -28,7 +28,7 @@ export function Hero() {
                     <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
                         I build <span className="text-accent font-semibold">Intelligent Systems</span>.
                         From RAG & Agents to scalable Full Stack apps.
-                        Leveraging the power of <span className="text-accent-secondary">Claude</span> & <span className="text-accent-secondary">Cursor</span>.
+                        Leveraging the power of <span className="text-accent-secondary">Claude</span>, <span className="text-accent-secondary">Cursor</span> & <span className="text-accent-secondary">Antigravity</span>.
                     </p>
 
                     <div className="flex flex-wrap gap-4 pt-4">
