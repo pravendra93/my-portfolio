@@ -20,15 +20,15 @@ export function Hero() {
                         <span className="text-xs font-medium text-zinc-600 dark:text-zinc-400">Available for new projects</span>
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-zinc-900 dark:text-white max-w-4xl">
-                        Full Stack <br />
-                        <span className="text-zinc-400 dark:text-zinc-600">Engineer</span> & <br />
-                        Problem Solver.
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight max-w-4xl">
+                        AI Generalist <br />
+                        <span className="ai-gradient-text">& Engineer.</span>
                     </h1>
 
                     <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-                        I'm <span className="font-semibold text-zinc-900 dark:text-white">{PROFILE.name}</span>. {PROFILE.bio.split('.')[0]}.
-                        Specializing in <span className="text-accent">Python</span>, <span className="text-accent">Node.js</span>, and <span className="text-accent">React</span>.
+                        I build <span className="text-accent font-semibold">Intelligent Systems</span>.
+                        From RAG & Agents to scalable Full Stack apps.
+                        Leveraging the power of <span className="text-accent-secondary">Claude</span> & <span className="text-accent-secondary">Cursor</span>.
                     </p>
 
                     <div className="flex flex-wrap gap-4 pt-4">

@@ -1,8 +1,8 @@
 export const PROFILE = {
     name: "Pravendra Kumar",
-    title: "Senior Full Stack Engineer",
-    tagline: "Python • Node.js • React",
-    bio: "Senior Full Stack Engineer with 10+ years building user‑facing applications and backend services. Deep experience with Python (FastAPI), Node.js, React / Next.js, TypeScript, and AWS (Lambda, ECS). I focus on shipping end‑to‑end features, improving system reliability, and mentoring engineers — all while delivering measurable outcomes that matter to the business.",
+    title: "AI Generalist & Full Stack Engineer",
+    tagline: "Building Intelligent Systems with RAG & Agents",
+    bio: "Senior Full Stack Engineer transformed into an AI Generalist. I specialize in building next-generation applications using Large Language Models (LLMs), RAG systems, and AI Agents. Leveraging tools like Claude Code, Cursor, and LangChain, I help founders and businesses deploy intelligent, scalable solutions.",
     location: "Noida, India",
     email: "prvndrkumar55@gmail.com",
     phone: "+91-8130345133",
@@ -14,10 +14,10 @@ export const PROFILE = {
 };
 
 export const SKILLS = [
-    { category: "Backend", items: ["Python (FastAPI)", "Node.js (Express)", "PostgreSQL", "MySQL", "MongoDB", "Redis"] },
-    { category: "Frontend", items: ["React", "Next.js", "TypeScript", "JavaScript", "HTML/CSS", "Tailwind CSS"] },
-    { category: "DevOps & Cloud", items: ["AWS (Lambda, ECS)", "Docker", "CI/CD", "Git", "GitHub"] },
-    { category: "Tools", items: ["VS Code", "Jira", "Slack", "AWS CLI", "Cursor", "Claude Code"] }
+    { category: "AI & GenAI", items: ["RAG Systems", "LLMs (OpenAI, Anthropic)", "LangChain", "Vector Databases (Pinecone, Chroma)", "AI Agents", "Prompt Engineering"] },
+    { category: "AI Tools", items: ["Claude Code", "Cursor", "Antigravity", "V0", "Perplexity", "Midjourney"] },
+    { category: "Full Stack", items: ["Python (FastAPI)", "Node.js", "React / Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"] },
+    { category: "Cloud & DevOps", items: ["AWS (Lambda, Bedrock)", "Docker", "CI/CD", "Serverless", "System Architecture"] }
 ];
 
 export const EXPERIENCE = [
@@ -65,83 +65,83 @@ export const EXPERIENCE = [
 
 export const PROJECTS = [
     {
+        title: "AI Agent Orchestrator",
+        tech: "LangChain, Python, Next.js",
+        description: "Built a multi-agent system capable of taking high-level user goals and breaking them down into executable tasks using LLMs.",
+        highlight: true
+    },
+    {
+        title: "Enterprise RAG System",
+        tech: "Pinecone, OpenAI, FastAPI",
+        description: "Developed a secure Retrieval-Augmented Generation system for internal document search, reducing information retrieval time by 90%.",
+        highlight: true
+    },
+    {
         title: "CaptainU (StackSports)",
         tech: "Ruby on Rails, React, MySQL",
-        description: "Implemented reusable React components and backend endpoints to support athlete profiles and search workflows. Improved page load and search throughput resulting in faster recruiter search experiences.",
+        description: "Implemented reusable React components and backend endpoints to support athlete profiles and search workflows. Improved page load and search throughput.",
         highlight: true
     },
     {
         title: "Unruly — Scraping & Data Platform",
-        tech: "Node.js, React, Chrome Extension, Airtable",
+        tech: "Node.js, React, Chrome Extension",
         description: "Built a three‑component system to automate collecting message and transaction data. Scraper automation reduced manual data collection time by 85%.",
-        highlight: true
+        highlight: false
     },
     {
         title: "NewAgeIslam.com",
-        tech: "Node.js, React, SSR (Next.js style)",
+        tech: "Node.js, React, SSR",
         description: "Rebuilt legacy site with a modern server‑rendering approach. Implemented SSR patterns, improving organic SEO ranking and traffic by approximately 20%.",
-        highlight: true
+        highlight: false
     },
     {
         title: "Air Travel Ticketing System",
-        tech: "Node.js, React, PHP, Redis, PostgreSQL",
-        description: "Led full‑stack development for a booking platform. Introduced background job processing and caching which significantly improved throughput during peak booking windows.",
-        highlight: false
-    },
-    {
-        title: "AppyPie (App Builder)",
-        tech: "AngularJS, PHP, MongoDB",
-        description: "Developed features for the web‑based app builder; focused on plugin architecture and stability for a multi‑tenant environment.",
-        highlight: false
-    },
-    {
-        title: "RugStudio (E‑commerce)",
-        tech: "AngularJS, CakePHP, MySQL",
-        description: "Built storefront features, payment integrations and admin tooling; reduced cart abandonment by optimizing checkout flows.",
+        tech: "Node.js, React, Redis",
+        description: "Led full‑stack development for a booking platform. Introduced background job processing and caching which significantly improved throughput.",
         highlight: false
     }
 ];
 
 export const PRICING_PLANS = [
     {
-        name: "Consultation",
-        price: "$150",
+        name: "AI Strategy Call",
+        price: "$200",
         period: "/ hour",
-        description: "Perfect for code reviews, architecture planning, or technical guidance.",
+        description: "Deep dive into your AI needs. Feasibility analysis, tool selection (RAG vs Fine-tuning), and roadmap planning.",
         features: [
-            "1-on-1 Video Call",
-            "Codebase Audit",
-            "Architecture Review",
-            "Career Mentorship"
+            "Use Case Analysis",
+            "Tech Stack Recommendation",
+            "RAG Feasibility Study",
+            "Implementation Roadmap"
         ],
         highlight: false
     },
     {
-        name: "MVP Development",
-        price: "$5k+",
+        name: "MVP & AI Integration",
+        price: "$8k+",
         period: "/ project",
-        description: "End-to-end development for startups and founders building their first product.",
+        description: "Build your first AI-powered product. From concept to deployed MVP with integrated LLM capabilities.",
         features: [
-            "React/Next.js Frontend",
-            "Node/Python Backend",
-            "Database Design",
-            "Deployment & CI/CD",
-            "3 Weeks of Support"
+            "RAG System Implementation",
+            "Custom AI Agents",
+            "Modern Next.js Frontend",
+            "Production Deployment",
+            "Prompt Engineering"
         ],
         highlight: true,
-        badge: "Most Popular"
+        badge: "AI Powered"
     },
     {
-        name: "Enterprise/Retainer",
+        name: "Enterprise RAG",
         price: "Custom",
         period: "",
-        description: "Dedicated engineering resources for scaling teams and complex systems.",
+        description: "Scalable, secure AI systems for larger organizations. Knowledge base integration and custom fine-tuning.",
         features: [
-            "System Architecture",
-            "Team Leadership",
-            "Performance Optimization",
-            "Priority Support",
-            "Long-term Engagement"
+            "Private LLM Deployment",
+            "Enterprise Data Security",
+            "Multi-Agent Orchestration",
+            "Legacy System Integration",
+            "SLA Support"
         ],
         highlight: false
     }

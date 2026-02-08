@@ -8,9 +8,8 @@ import { Contact } from "@/components/sections/contact";
 
 export default function Home() {
     return (
-        <main className="min-h-screen bg-zinc-50 dark:bg-black text-zinc-900 dark:text-zinc-100 selection:bg-accent/30">
+        <main className="min-h-screen selection:bg-accent/30">
             <Navigation />
-
             <Hero />
             <Skills />
             <Experience />
