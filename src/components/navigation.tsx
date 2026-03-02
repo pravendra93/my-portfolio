@@ -17,10 +17,9 @@ export function Navigation() {
     }, []);
 
     const links = [
-        { name: "About", href: "#" },
-        { name: "Skills", href: "#skills" },
-        { name: "Work", href: "#experience" },
-        { name: "Projects", href: "#projects" },
+        { name: "Services", href: "#services" },
+        { name: "Team", href: "#team" },
+        { name: "Work", href: "#projects" },
         { name: "Pricing", href: "#pricing" },
         { name: "Contact", href: "#contact" },
     ];
@@ -36,7 +35,7 @@ export function Navigation() {
         >
             <div className="max-w-5xl mx-auto px-4 flex justify-between items-center">
                 <Link href="/" className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white z-50">
-                    PK<span className="text-accent">.</span>
+                    Vision<span className="text-accent">AI.</span>
                 </Link>
 
                 <nav className={cn(

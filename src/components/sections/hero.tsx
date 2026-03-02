@@ -21,14 +21,13 @@ export function Hero() {
                     </div>
 
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight max-w-4xl">
-                        AI Generalist <br />
-                        <span className="ai-gradient-text">& Engineer.</span>
+                        AI-First <br />
+                        <span className="ai-gradient-text">Engineering Agency.</span>
                     </h1>
 
                     <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-                        I build <span className="text-accent font-semibold">Intelligent Systems</span>.
-                        From RAG & Agents to scalable Full Stack apps.
-                        Leveraging the power of <span className="text-accent-secondary">Claude</span>, <span className="text-accent-secondary">Cursor</span> & <span className="text-accent-secondary">Antigravity</span>.
+                        We make it easy for startups to <span className="text-zinc-900 dark:text-white font-medium">launch, grow, and scale</span> with clean MVPs and superfast shipping.
+                        By leveraging <span className="text-accent-secondary font-medium">Cursor</span>, <span className="text-accent-secondary font-medium">Claude</span>, and <span className="text-accent-secondary font-medium">Antigravity with Gemini</span>, we deliver maximum results with unprecedented speed.
                     </p>
 
                     <div className="flex flex-wrap gap-4 pt-4">
