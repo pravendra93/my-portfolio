@@ -21,25 +21,35 @@ export function Hero() {
                     </div>
 
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight max-w-4xl">
-                        AI-First <br />
-                        <span className="ai-gradient-text">Engineering Agency.</span>
+                        AI Execution Systems <br />
+                        <span className="ai-gradient-text">for Modern SaaS Teams</span>
                     </h1>
 
-                    <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-                        We make it easy for startups to <span className="text-zinc-900 dark:text-white font-medium">launch, grow, and scale</span> with clean MVPs and superfast shipping.
-                        By leveraging <span className="text-accent-secondary font-medium">Cursor</span>, <span className="text-accent-secondary font-medium">Claude</span>, and <span className="text-accent-secondary font-medium">Antigravity with Gemini</span>, we deliver maximum results with unprecedented speed.
-                    </p>
+                    <div className="space-y-4">
+                        <p className="text-2xl md:text-3xl font-semibold text-zinc-900 dark:text-white">
+                            Build Faster. Operate Smarter. <br />
+                            <span className="text-accent">Scale With Autonomous Leverage.</span>
+                        </p>
+                        <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
+                            We design and deploy AI-native execution systems that eliminate operational drag and increase execution velocity — built for globally distributed teams.
+                        </p>
+                    </div>
 
-                    <div className="flex flex-wrap gap-4 pt-4">
-                        <Link
-                            href="#contact"
-                            className="inline-flex items-center px-6 py-3 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-black font-medium transition-transform hover:scale-105"
-                        >
-                            Book a Call <ArrowRight className="ml-2 w-4 h-4" />
-                        </Link>
+                    <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                        <div className="flex flex-col gap-2">
+                            <Link
+                                href="#contact"
+                                className="inline-flex items-center px-6 py-3 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-black font-medium transition-transform hover:scale-105"
+                            >
+                                Apply for Strategic Call <ArrowRight className="ml-2 w-4 h-4" />
+                            </Link>
+                            <span className="text-xs text-zinc-500 text-center sm:text-left ml-4">
+                                30-minute structured assessment call.
+                            </span>
+                        </div>
                         <Link
                             href="#projects"
-                            className="inline-flex items-center px-6 py-3 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-black/50 backdrop-blur-sm text-zinc-900 dark:text-white font-medium transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                            className="inline-flex items-center px-6 py-3 h-[48px] rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-black/50 backdrop-blur-sm text-zinc-900 dark:text-white font-medium transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800"
                         >
                             View Work
                         </Link>

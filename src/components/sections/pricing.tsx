@@ -60,17 +60,22 @@ export function Pricing() {
                                     ))}
                                 </ul>
 
-                                <Link
-                                    href="#contact"
-                                    className={cn(
-                                        "w-full inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-colors text-sm",
-                                        plan.highlight
-                                            ? "bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200"
-                                            : "border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                                    )}
-                                >
-                                    Get Started <ArrowRight className="w-4 h-4 ml-2" />
-                                </Link>
+                                <div className="flex flex-col gap-2">
+                                    <Link
+                                        href="#contact"
+                                        className={cn(
+                                            "w-full inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-colors text-sm",
+                                            plan.highlight
+                                                ? "bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200"
+                                                : "border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                                        )}
+                                    >
+                                        Apply for Strategic Call <ArrowRight className="w-4 h-4 ml-2" />
+                                    </Link>
+                                    <span className="text-[10px] text-zinc-500 text-center">
+                                        30-minute structured assessment call.
+                                    </span>
+                                </div>
                             </Card>
                         </motion.div>
                     ))}

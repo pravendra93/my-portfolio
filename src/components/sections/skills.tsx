@@ -10,9 +10,9 @@ export function Services() {
             <div className="max-w-5xl mx-auto w-full">
                 <div className="grid md:grid-cols-3 gap-12">
                     <div className="md:col-span-1">
-                        <h2 className="text-3xl font-bold mb-4">Technical<br />Services</h2>
+                        <h2 className="text-3xl font-bold mb-4">AI Execution<br />Capabilities</h2>
                         <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
-                            A specialized suite of technical services leveraging state-of-the-art AI to accelerate your product development.
+                            A specialized suite of systems we deploy to eliminate friction and build structural leverage in your SaaS operations.
                         </p>
                     </div>
 
