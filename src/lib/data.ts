@@ -1,8 +1,8 @@
 export const PROFILE = {
     name: "Vision-AI Studio",
-    title: "AI Execution Infrastructure for Modern B2B SaaS",
-    tagline: "The Next Generation of SaaS Won’t Hire More. It Will Execute Smarter.",
-    bio: "We partner with B2B SaaS founders to design AI-native execution systems that automate research, compress product cycles, and eliminate operational drag. Every engagement is built around structural leverage, long-term maintainability, and one core principle: Leverage > Headcount.",
+    title: "Tech Partner for Early Stage Founders & Startups",
+    tagline: "We make it easy for startups to launch, grow, and scale with clean MVPs and superfast shipping",
+    bio: "We partner with early-stage founders to build, launch, and scale high-performance MVPs with superfast shipping. Our focus is on technical excellence, execution velocity, and long-term structural leverage.",
     location: "Remote / Noida, India",
     email: "hello@vision-ai.studio", // Placeholder
     phone: "+91-XXXXXXXXXX",
@@ -14,37 +14,22 @@ export const PROFILE = {
 
 export const SERVICES = [
     {
-        category: "AI Execution Audit",
-        items: [
-            "Workflow & bottleneck analysis",
-            "AI opportunity mapping",
-            "Agent feasibility assessment",
-            "Architecture blueprint",
-            "Model & cost planning",
-            "Strategic implementation roadmap"
-        ]
+        category: "Design",
+        description: "Outcome-driven design that prioritizes user experience and brand clarity.",
+        items: ["Product Design", "UX/UI Systems", "Branding & Identity", "Rapid Prototyping"],
+        icon: "Palette"
     },
     {
-        category: "Focused AI System Builds",
-        items: [
-            "AI research agents",
-            "Sales intelligence systems",
-            "Support automation workflows",
-            "Internal knowledge assistants",
-            "API-based workflow execution",
-            "Secure deployment & logging"
-        ]
+        category: "Development",
+        description: "Superfast shipping of MVPs and scalable web applications with zero technical debt.",
+        items: ["Next.js/React MVPs", "Full-Stack Systems", "API Architecture", "Performance Optimization"],
+        icon: "Code"
     },
     {
-        category: "AI Workflow Automation",
-        items: [
-            "CRM & tool integrations",
-            "Automated reporting pipelines",
-            "Intelligent task routing",
-            "Operational drag reduction",
-            "Data enrichment systems",
-            "Scalable execution architecture"
-        ]
+        category: "AI Integration",
+        description: "Future-proof your product with intelligent agents and automated workflows.",
+        items: ["Custom AI Agents", "RAG Infrastructure", "LLM Orchestration", "Process Automation"],
+        icon: "Sparkles"
     }
 ];
 
@@ -118,45 +103,51 @@ export const PROJECTS = [
 
 export const PRICING_PLANS = [
     {
-        name: "AI Execution Audit",
-        price: "$3,000",
-        period: "/ engagement",
-        description: "Deep analysis of your SaaS workflows to identify high-leverage AI automation opportunities.",
+        name: "MVP Launchpad",
+        price: "$5,499",
+        period: "+",
+        delivery: "4-6 weeks",
+        description: "Ideal for lean teams or startups needing clean, fast design and functional delivery.",
         features: [
-            "Workflow & Bottleneck Analysis",
-            "AI Opportunity Mapping",
-            "Agent Feasibility Plan",
-            "Architecture Blueprint",
-            "Cost & Model Strategy"
+            "Complete MVP development",
+            "Full Stack Development",
+            "Deployment and launch support",
+            "14 day complementary support",
+            "PRD-based revisions included",
+            "Scaling assistance available"
         ],
         highlight: false
     },
     {
-        name: "Focused AI System Build",
-        price: "$10,000 - $15,000",
-        period: "/ project",
-        description: "Design and deploy a high-impact AI execution system inside your product or operations.",
+        name: "Product Sprint+",
+        price: "$9,950",
+        period: "+",
+        delivery: "6-10 weeks",
+        description: "For founders who want a usable, credible product — not a prototype.",
         features: [
-            "Custom AI Agent or Workflow System",
-            "API & Tool Integration",
-            "Human-in-the-loop Guardrails",
-            "Secure Deployment",
-            "Post-Launch Optimization"
+            "End-to-end MVP development",
+            "Production-ready codebase",
+            "Polished core user flows",
+            "21 days post-launch support",
+            "Analytics & monitoring setup",
+            "Best for demos and early investors"
         ],
         highlight: true,
         badge: "Most Popular"
     },
     {
-        name: "AI Infrastructure Program",
-        price: "$20k - $40k",
-        period: "/ roadmap",
-        description: "Comprehensive AI-native transformation across product, research, and operations.",
+        name: "Custom Enterprise",
+        price: "$15,499",
+        period: "+",
+        delivery: "12-16 weeks",
+        description: "Built for teams scaling fast and shipping mission-critical products.",
         features: [
-            "Multi-Agent Architecture",
-            "Workflow Orchestration Layer",
-            "Continuous Research Systems",
-            "Infrastructure Hardening",
-            "90-Day Strategic Partnership"
+            "Dedicated engineering team",
+            "Custom UX & architecture",
+            "Scalable cloud infrastructure",
+            "Security & compliance ready",
+            "Priority support & SLA-backed",
+            "Roadmap & strategy planning"
         ],
         highlight: false
     }
