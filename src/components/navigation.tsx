@@ -34,8 +34,17 @@ export function Navigation() {
             )}
         >
             <div className="max-w-5xl mx-auto px-4 flex justify-between items-center">
-                <Link href="/" className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white z-50">
-                    Vision<span className="text-accent">AI.</span>
+                <Link href="/" className="flex items-center gap-3 z-50 group">
+                    <div className="relative w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105 border border-accent/20">
+                        <img 
+                            src="/logo.png" 
+                            alt="RakriLabs.ai Logo" 
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
+                    <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
+                        Rakri<span className="text-accent">Labs.ai</span>
+                    </span>
                 </Link>
 
                 <nav className={cn(

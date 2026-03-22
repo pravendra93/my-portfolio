@@ -7,8 +7,8 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 
 export const metadata: Metadata = {
-    title: "Pravendra Kumar — Senior Full Stack Engineer",
-    description: "Portfolio of Pravendra Kumar, a Senior Full Stack Engineer specializing in Python, Node.js, and React.",
+    title: "RakriLabs.ai — Tech Partner for Startups",
+    description: "RakriLabs.ai specializes in building clean MVPs and scaling high-performance products for early-stage founders.",
 };
 
 export default function RootLayout({

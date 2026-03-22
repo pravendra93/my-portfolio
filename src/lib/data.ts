@@ -1,14 +1,14 @@
 export const PROFILE = {
-    name: "Vision-AI Studio",
+    name: "RakriLabs.ai",
     title: "Tech Partner for Early Stage Founders & Startups",
     tagline: "We make it easy for startups to launch, grow, and scale with clean MVPs and superfast shipping",
     bio: "We partner with early-stage founders to build, launch, and scale high-performance MVPs with superfast shipping. Our focus is on technical excellence, execution velocity, and long-term structural leverage.",
     location: "Remote / Noida, India",
-    email: "hello@vision-ai.studio", // Placeholder
+    email: "hello@rakrilabs.ai", // Placeholder
     phone: "+91-XXXXXXXXXX",
     social: {
-        github: "https://github.com/vision-ai-studio",
-        linkedin: "https://www.linkedin.com/company/vision-ai-studio"
+        github: "https://github.com/rakrilabs-ai",
+        linkedin: "https://www.linkedin.com/company/rakrilabs-ai"
     }
 };
 
