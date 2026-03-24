@@ -1,6 +1,9 @@
 # ---------- Builder ----------
 FROM node:20-alpine AS builder
 
+# Disable telemetry for faster builds
+ENV NEXT_TELEMETRY_DISABLED=1
+
 WORKDIR /app
 
 COPY package.json package-lock.json ./
