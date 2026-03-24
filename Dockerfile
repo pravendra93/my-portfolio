@@ -1,36 +1,44 @@
-# ---------- Builder ----------
-FROM node:20-alpine AS builder
-
-# Disable telemetry for faster builds
-ENV NEXT_TELEMETRY_DISABLED=1
-
+# =====================
+# Dependencies
+# =====================
+FROM node:20-slim AS deps
 WORKDIR /app
-
-COPY package.json package-lock.json ./
+COPY package.json package-lock.json* ./
 RUN npm ci
 
-COPY . .
 
-ENV NODE_OPTIONS="--max-old-space-size=4096"
+# =====================
+# Build
+# =====================
+FROM node:20-slim AS builder
+WORKDIR /app
+ENV NEXT_TELEMETRY_DISABLED=1
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
 RUN npm run build
 
-# ---------- Runner ----------
-FROM node:20-alpine AS runner
 
+# =====================
+# Runtime (TINY)
+# =====================
+FROM node:20-slim AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Copy standalone output
+RUN useradd -m nextjs
+
+# Only the standalone server + minimal deps
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
-# Non-root user (basic security hygiene)
-RUN addgroup -S nextjs && adduser -S nextjs -G nextjs
+RUN mkdir -p /app/.next/cache && \
+    chown -R nextjs:nextjs /app
+
 USER nextjs
 
 EXPOSE 3000
-
 CMD ["node", "server.js"]
