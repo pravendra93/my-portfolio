@@ -73,20 +73,20 @@ export function Hero() {
                     <div className="relative aspect-square max-w-[500px] ml-auto">
                         <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-blue-500/10 rounded-3xl border border-white/20 dark:border-zinc-800 backdrop-blur-3xl shadow-2xl flex items-center justify-center p-8">
                             <div className="grid grid-cols-2 gap-6 w-full">
-                                <FloatingCard 
-                                    icon={<Rocket className="w-10 h-10 text-accent" />} 
-                                    label="Launch" 
-                                    delay={0} 
+                                <FloatingCard
+                                    icon={<Rocket className="w-10 h-10 text-accent" />}
+                                    label="Launch"
+                                    delay={0}
                                 />
-                                <FloatingCard 
-                                    icon={<Zap className="w-10 h-10 text-yellow-500" />} 
-                                    label="Speed" 
-                                    delay={0.2} 
+                                <FloatingCard
+                                    icon={<Zap className="w-10 h-10 text-yellow-500" />}
+                                    label="Speed"
+                                    delay={0.2}
                                 />
-                                <FloatingCard 
-                                    icon={<Target className="w-10 h-10 text-blue-500" />} 
-                                    label="Scale" 
-                                    delay={0.4} 
+                                <FloatingCard
+                                    icon={<Target className="w-10 h-10 text-blue-500" />}
+                                    label="Scale"
+                                    delay={0.4}
                                 />
                                 <div className="p-8 rounded-3xl bg-white/5 dark:bg-black/20 border border-white/10 backdrop-blur-md flex items-center justify-center">
                                     <span className="text-4xl font-black uppercase tracking-tighter opacity-20">MVPs</span>
@@ -95,7 +95,7 @@ export function Hero() {
                         </div>
 
                         {/* Floating elements outside the container */}
-                        <motion.div 
+                        <motion.div
                             animate={{ y: [0, 15, 0] }}
                             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                             className="absolute -top-6 -right-6 p-4 rounded-2xl bg-white/90 dark:bg-zinc-900/90 border border-zinc-200 dark:border-zinc-800 shadow-2xl backdrop-blur-md z-10"

@@ -29,7 +29,7 @@ const APPROACH_ITEMS = [
 export function Approach() {
     return (
         <section className="py-24 px-4 bg-zinc-50 dark:bg-zinc-900/50">
-            <div className="max-w-5xl mx-auto w-full">
+            <div className="max-w-7xl mx-auto w-full">
                 <div className="mb-16">
                     <h2 className="text-3xl font-bold mb-4">Our Engineering Philosophy</h2>
                     <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl">

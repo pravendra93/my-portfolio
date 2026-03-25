@@ -18,7 +18,7 @@ export function Navigation() {
 
     const links = [
         { name: "Services", href: "#services" },
-        { name: "Team", href: "#team" },
+        // { name: "Team", href: "#team" },
         { name: "Work", href: "#projects" },
         { name: "Pricing", href: "#pricing" },
         { name: "Contact", href: "#contact" },
@@ -33,13 +33,13 @@ export function Navigation() {
                 scrolled ? "py-4" : "py-6"
             )}
         >
-            <div className="max-w-5xl mx-auto px-4 flex justify-between items-center">
+            <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
                 <Link href="/" className="flex items-center gap-3 z-50 group">
-                    <div className="relative w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105 border border-accent/20">
-                        <img 
-                            src="/logo.png" 
-                            alt="RakriLabs.ai Logo" 
-                            className="w-full h-full object-cover"
+                    <div className="relative w-9 h-9 flex items-center justify-center transition-transform group-hover:scale-105">
+                        <img
+                            src="/logo.png"
+                            alt="RakriLabs.ai Logo"
+                            className="w-full h-full object-contain"
                         />
                     </div>
                     <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">

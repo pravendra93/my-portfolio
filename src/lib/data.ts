@@ -104,7 +104,7 @@ export const PROJECTS = [
 export const PRICING_PLANS = [
     {
         name: "MVP Launchpad",
-        price: "$5,499",
+        price: "$4,499",
         period: "+",
         delivery: "4-6 weeks",
         description: "Ideal for lean teams or startups needing clean, fast design and functional delivery.",
@@ -137,7 +137,7 @@ export const PRICING_PLANS = [
     },
     {
         name: "Custom Enterprise",
-        price: "$15,499",
+        price: "$13,499",
         period: "+",
         delivery: "12-16 weeks",
         description: "Built for teams scaling fast and shipping mission-critical products.",

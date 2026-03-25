@@ -10,7 +10,7 @@ export function Projects() {
     return (
         <section id="projects" className="py-24 px-4 bg-zinc-900 text-white relative overflow-hidden">
             {/* Decorative background noise/grain could go here */}
-            <div className="max-w-6xl mx-auto w-full relative z-10">
+            <div className="max-w-7xl mx-auto w-full relative z-10">
                 <div className="flex items-end justify-between mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold">Selected Works</h2>
                     <span className="text-zinc-500 hidden sm:inline-block">2013 — Present</span>

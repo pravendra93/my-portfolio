@@ -44,7 +44,7 @@ const WORK_STEPS = [
 export function HowWeWork() {
     return (
         <section className="py-24 px-4 border-t border-zinc-200 dark:border-zinc-800">
-            <div className="max-w-5xl mx-auto w-full">
+            <div className="max-w-7xl mx-auto w-full">
                 <div className="grid md:grid-cols-3 gap-12">
                     <div className="md:col-span-1">
                         <h2 className="text-3xl font-bold mb-4">How We Work</h2>
