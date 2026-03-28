@@ -7,8 +7,10 @@ import { openCalendly } from "./CalendlyProvider";
 const plans = [
   {
     name: "AI Strategy Audit",
-    price: "$2,500",
-    description: "Deep-dive technical assessment of your AI roadmap. 2-day session with a senior architect.",
+    price: "$5,000",
+    audience: "For Founders exploring feasibility",
+    guidance: "Validation stage: Verify technical viability before your next round.",
+    description: "Comprehensive technical roadmap & architecture audit for scale-ready AI products.",
     features: [
       "Technical feasibility analysis",
       "Model vs API evaluation",
@@ -22,6 +24,8 @@ const plans = [
   {
     name: "Production Engine",
     price: "$15k - $25k",
+    audience: "For Growth startups shipping flagships",
+    guidance: "Execution stage: Ship your flagship product in sub-40 days.",
     description: "Our core offering. We build and ship your flagship AI product in sub-40 days. 1 slot remaining for Q2.",
     features: [
       "Full custom UI/UX design",
@@ -36,6 +40,8 @@ const plans = [
   {
     name: "Venture Partner",
     price: "Custom",
+    audience: "For Scale-ups building custom R&D",
+    guidance: "Scale stage: Long-term technical leadership and R&D systems.",
     description: "Long-term engineering partnership. Continuous R&D and scale-out for enterprise AI systems.",
     features: [
       "Fractional CTO advisory",
@@ -101,12 +107,20 @@ export function Pricing() {
             <div className="space-y-8 flex flex-col h-full">
               <div className="space-y-4">
                 <h3 className="text-2xl font-bold text-white tracking-tight">{plan.name}</h3>
-                <div className="flex items-baseline text-4xl font-black tracking-tighter text-white mb-2">
+                <div className="flex items-baseline text-4xl font-black tracking-tighter text-white mb-1">
                   <span className={plan.highlight ? "text-gradient" : ""}>{plan.price}</span>
+                </div>
+                <div className="inline-flex items-center gap-2 px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[9px] font-black uppercase tracking-widest text-brand-cyan mb-4">
+                  {plan.audience}
                 </div>
                 <p className="text-sm text-muted font-medium italic">
                   "{plan.description}"
                 </p>
+                <div className="pt-2">
+                   <p className="text-[10px] font-black uppercase tracking-widest text-[#555] leading-relaxed italic">
+                      {plan.guidance}
+                   </p>
+                </div>
               </div>
 
               <div className="w-full h-px bg-white/5 my-2" />

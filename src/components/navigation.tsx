@@ -5,9 +5,11 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { openCalendly } from "./CalendlyProvider";
+import { useFounderMode } from "./FounderContext";
 
 export function Navigation() {
     const [scrolled, setScrolled] = useState(false);
+    const { isFounderMode, toggleFounderMode } = useFounderMode();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -39,35 +41,52 @@ export function Navigation() {
         >
             <div className="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center">
                 <Link href="/" className="flex items-center gap-3 z-50 group">
-                    <span className="text-2xl font-bold tracking-tight text-white">
+                    <span className="text-2xl font-black tracking-tighter text-white">
                         RakriLabs<span className="text-brand-cyan">.ai</span>
                     </span>
                 </Link>
 
                 <nav className={cn(
-                    "hidden md:flex items-center gap-1 rounded-full px-2 py-1.5 transition-all text-sm font-medium",
+                    "hidden lg:flex items-center gap-1 rounded-full px-2 py-1.5 transition-all text-[11px] font-black uppercase tracking-widest",
                     scrolled ? "glass shadow-xl" : ""
                 )}>
                     {links.map((link) => (
                         <Link
                             key={link.name}
                             href={link.href}
-                            className="px-4 py-2 rounded-full hover:bg-white/10 text-muted hover:text-white transition-colors"
+                            className="px-4 py-2 rounded-full hover:bg-white/10 text-white/40 hover:text-white transition-all"
                         >
                             {link.name}
                         </Link>
                     ))}
                 </nav>
 
-                <button
-                    onClick={openCalendly}
-                    className={cn(
-                        "hidden md:flex glow-border px-5 py-2.5 rounded-full text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition-all",
-                        scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
-                    )}
-                >
-                    Book Call
-                </button>
+                <div className="flex items-center gap-6">
+                   {/* Founder Mode Toggle */}
+                   <div className="hidden md:flex items-center gap-3 glass-dark border border-white/5 px-4 py-1.5 rounded-full shadow-[inset_0_0_10px_rgba(255,255,255,0.05)]">
+                      <span className={cn("text-[8px] font-black uppercase tracking-widest transition-colors", !isFounderMode ? "text-brand-cyan" : "text-white/20")}>Standard</span>
+                      <button 
+                        onClick={toggleFounderMode}
+                        className="w-10 h-5 rounded-full bg-white/5 border border-white/10 relative p-1 group hover:border-brand-purple transition-all shadow-inner"
+                      >
+                         <motion.div 
+                           animate={{ x: isFounderMode ? 20 : 0 }}
+                           className={cn(
+                             "w-3 h-3 rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)]",
+                             isFounderMode ? "bg-brand-purple shadow-brand-purple/50" : "bg-white/40"
+                           )} 
+                         />
+                      </button>
+                      <span className={cn("text-[8px] font-black uppercase tracking-widest transition-colors", isFounderMode ? "text-brand-purple" : "text-white/20")}>Founder Mode</span>
+                   </div>
+
+                   <button
+                        onClick={openCalendly}
+                        className="glow-border px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest bg-white/5 border border-white/10 hover:bg-white text-white hover:text-black transition-all shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
+                   >
+                        Book Call
+                   </button>
+                </div>
 
                 <Link
                     href="#contact"

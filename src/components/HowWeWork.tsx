@@ -6,23 +6,23 @@ import { useRef } from "react";
 
 const steps = [
   {
-    title: "Discover & Strategy",
-    description: "Deep dive into your business model, target audience, and core product mechanics to define the perfect MVP scope.",
+    title: "Discovery",
+    description: "Deep dive into your business model, metrics, and core product mechanics to define the precise technical scope.",
     icon: Search,
   },
   {
-    title: "Design & Architect",
-    description: "Creating high-fidelity prototypes and planning scalable system architectures tailored for AI integration.",
+    title: "Product Blueprint",
+    description: "Architecting the distributed system, database schemas, and AI orchestration layer. Designing high-fidelity UX patterns.",
     icon: PenTool,
   },
   {
-    title: "Build & Iterate",
-    description: "Agile engineering cycles delivering functional builds fast. We prioritize core logic over fluff.",
+    title: "Rapid Build",
+    description: "Hardcore engineering. We ship functional deployments every 48-72 hours. No fluff, just pure production-grade code.",
     icon: Code,
   },
   {
     title: "Launch & Scale",
-    description: "Deploying to production with observability, analytics, and infrastructure built to handle hypergrowth.",
+    description: "Battle-tested deployment with full observability. We hand over a system built to handle millions of requests.",
     icon: TrendingUp,
   },
 ];

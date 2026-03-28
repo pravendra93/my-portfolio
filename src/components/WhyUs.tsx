@@ -2,34 +2,36 @@
 
 import { motion } from "framer-motion";
 import { Zap, ShieldCheck, Cpu, Code2 } from "lucide-react";
+import { useFounderMode } from "./FounderContext";
 
 export function WhyUs() {
-  const features = [
-    {
-      title: "Engineering Native",
-      description: "We don't just 'use' AI; we architect it. Our team understands sub-ms latencies and distributed inference.",
-      icon: Cpu,
-      accent: "text-brand-purple",
-    },
-    {
-      title: "Speed is a Feature",
-      description: "Startups live and die by velocity. We ship production-grade MVPs in 4 weeks, not 4 months.",
-      icon: Zap,
-      accent: "text-brand-cyan",
-    },
-    {
-      title: "Scale Built-in",
-      description: "Our architectures are designed for 100k+ concurrent users from Day 1. No technical debt, just raw performance.",
-      icon: ShieldCheck,
-      accent: "text-blue-500",
-    },
-    {
-      title: "Deep Tech Partners",
-      description: "We work directly with founders to translate business vision into high-performance technical roadmaps.",
-      icon: Code2,
-      accent: "text-indigo-400",
-    },
-  ];
+  const { isFounderMode } = useFounderMode();
+const features = [
+  {
+    title: "Engineering Leverage",
+    description: "We don't build features. We build lever. Our systems are designed for sub-ms latency and high-frequency token processing.",
+    icon: Cpu,
+    accent: "text-brand-purple",
+  },
+  {
+    title: "Capital Efficiency",
+    description: "Startups burn through cash. We ship production-ready flagships in sub-30 days to maximize your fundraising window.",
+    icon: Zap,
+    accent: "text-brand-cyan",
+  },
+  {
+    title: "Zero-Debt Ops",
+    description: "Infrastructure built to scale from 1 to 100k+ concurrent users without rewrite. Scale is integrated, not added.",
+    icon: ShieldCheck,
+    accent: "text-blue-500",
+  },
+  {
+    title: "Direct Equity Focus",
+    description: "Working directly with founders as fractional CTOs to translate business vision into engineering reality.",
+    icon: Code2,
+    accent: "text-indigo-400",
+  },
+];
 
   return (
     <section className="py-24 px-6 lg:px-12 max-w-7xl mx-auto relative z-10 w-full mb-12">
@@ -40,13 +42,16 @@ export function WhyUs() {
             whileInView={{ opacity: 1, scale: 1 }}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-purple/10 border border-brand-purple/20 text-brand-purple text-[10px] font-bold tracking-[0.2em] uppercase"
           >
-            The Advantage
+            {isFounderMode ? "The Result" : "The Advantage"}
           </motion.div>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
-            Why visionary <span className="text-gradient">founders</span> choose us.
+            {isFounderMode ? "Engineering results. No fluff." : "Why visionary founders choose us."}
           </h2>
           <p className="text-muted text-lg leading-relaxed">
-            Generic development agencies build code. We build companies. We understand the high-stakes engineering requirements of the AI era.
+            {isFounderMode 
+              ? "We don't build features. We build infrastructure that prints profit. If it doesn't scale on Day 1, we don't code it."
+              : "Generic development agencies build code. We build companies. We understand the high-stakes engineering requirements of the AI era."
+            }
           </p>
           
           <div className="pt-8 border-t border-white/5 space-y-4">
