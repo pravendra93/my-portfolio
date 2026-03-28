@@ -3,39 +3,19 @@
 import { motion } from "framer-motion";
 import { MessageSquare, Mail, Copy, CheckCircle2, Loader2 } from "lucide-react";
 import { useState } from "react";
+import { useForm, ValidationError } from '@formspree/react';
 
 export function Contact() {
   const [copied, setCopied] = useState(false);
   const email = "akshaykumar.ojha@gmail.com";
   
-  const [formData, setFormData] = useState({ firstName: '', lastName: '', email: '', details: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  // Use the Formspree React hook with your provided ID
+  const [state, handleSubmit] = useForm("xojpjbya");
 
   const handleCopy = () => {
     navigator.clipboard.writeText(email);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.firstName || !formData.email || !formData.details) return;
-    
-    setIsSubmitting(true);
-    console.log("Contact form submitted:", formData);
-    
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      
-      const subject = encodeURIComponent(`Project Inquiry from ${formData.firstName} ${formData.lastName}`);
-      const body = encodeURIComponent(`Name: ${formData.firstName} ${formData.lastName}\nEmail: ${formData.email}\n\nDetails:\n${formData.details}`);
-      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-      
-      setTimeout(() => setIsSuccess(false), 5000);
-      setFormData({ firstName: '', lastName: '', email: '', details: '' });
-    }, 1500);
   };
 
   return (
@@ -103,22 +83,22 @@ export function Contact() {
           <form className="space-y-5 relative z-10" onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-xs text-muted font-medium uppercase tracking-wider ml-1">First Name</label>
+                <label className="text-xs text-muted font-medium uppercase tracking-wider ml-1" htmlFor="firstName">First Name</label>
                 <input 
                   required
+                  id="firstName"
+                  name="firstName"
                   type="text" 
-                  value={formData.firstName}
-                  onChange={(e) => setFormData({...formData, firstName: e.target.value})}
                   className="w-full bg-[#111] border border-white/5 rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple/50 transition-all placeholder:text-white/10 shadow-inner" 
                   placeholder="Satoshi" 
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="text-xs text-muted font-medium uppercase tracking-wider ml-1">Last Name</label>
+                <label className="text-xs text-muted font-medium uppercase tracking-wider ml-1" htmlFor="lastName">Last Name</label>
                 <input 
+                  id="lastName"
+                  name="lastName"
                   type="text" 
-                  value={formData.lastName}
-                  onChange={(e) => setFormData({...formData, lastName: e.target.value})}
                   className="w-full bg-[#111] border border-white/5 rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan/50 transition-all placeholder:text-white/10 shadow-inner" 
                   placeholder="Nakamoto" 
                 />
@@ -126,42 +106,44 @@ export function Contact() {
             </div>
 
             <div className="space-y-1.5">
-               <label className="text-xs text-muted font-medium uppercase tracking-wider ml-1">Email</label>
+               <label className="text-xs text-muted font-medium uppercase tracking-wider ml-1" htmlFor="email">Email</label>
                <input 
                  required
+                 id="email"
+                 name="email"
                  type="email" 
-                 value={formData.email}
-                 onChange={(e) => setFormData({...formData, email: e.target.value})}
                  className="w-full bg-[#111] border border-white/5 rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan/50 transition-all placeholder:text-white/10 shadow-inner" 
                  placeholder="satoshi@network.com" 
                />
+               <ValidationError prefix="Email" field="email" errors={state.errors} className="text-xs text-red-400 mt-1" />
             </div>
 
             <div className="space-y-1.5">
-               <label className="text-xs text-muted font-medium uppercase tracking-wider ml-1">Project Details</label>
+               <label className="text-xs text-muted font-medium uppercase tracking-wider ml-1" htmlFor="message">Project Details</label>
                <textarea 
                  required
+                 id="message"
+                 name="message"
                  rows={4} 
-                 value={formData.details}
-                 onChange={(e) => setFormData({...formData, details: e.target.value})}
                  className="w-full bg-[#111] border border-white/5 rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple/50 transition-all placeholder:text-white/10 resize-none shadow-inner" 
                  placeholder="We need an AI agent that..." 
                />
+               <ValidationError prefix="Message" field="message" errors={state.errors} className="text-xs text-red-300 mt-1" />
             </div>
 
             <div className="pt-4">
               <button 
                 type="submit" 
-                disabled={isSubmitting || isSuccess}
+                disabled={state.submitting || state.succeeded}
                 className={`w-full py-4 rounded-xl flex items-center justify-center font-semibold transition-all duration-300 ${
-                  isSuccess 
+                  state.succeeded 
                   ? "bg-brand-cyan/20 text-brand-cyan border-brand-cyan/50 border shadow-[0_0_20px_rgba(6,182,212,0.2)]" 
                   : "bg-white text-[#0A0A0A] hover:bg-white/90 shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:shadow-[0_0_30px_rgba(255,255,255,0.25)]"
                 }`}
               >
-                 {isSubmitting ? (
+                 {state.submitting ? (
                     <span className="flex items-center gap-2"><Loader2 className="w-5 h-5 animate-spin" /> Sending...</span>
-                 ) : isSuccess ? (
+                 ) : state.succeeded ? (
                     <span className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5" /> Request Sent!</span>
                  ) : (
                     "Send Request"
