@@ -20,6 +20,7 @@ export function Navigation() {
     const links = [
         { name: "Services", href: "#services" },
         { name: "Process", href: "#process" },
+        { name: "Planner", href: "#planner" },
         { name: "Work", href: "#projects" },
         { name: "Pricing", href: "#pricing" },
         { name: "Contact", href: "#contact" },
@@ -30,8 +31,10 @@ export function Navigation() {
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             className={cn(
-                "fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full",
-                scrolled ? "py-4" : "py-6"
+                "fixed top-0 left-0 right-0 z-[100] transition-all duration-500 w-full",
+                scrolled 
+                    ? "py-3 bg-[#050505]/80 backdrop-blur-xl border-b border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)]" 
+                    : "py-6 bg-transparent"
             )}
         >
             <div className="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center">

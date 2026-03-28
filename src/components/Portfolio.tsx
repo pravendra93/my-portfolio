@@ -9,38 +9,46 @@ type ProjectCategory = "All" | "AI" | "SaaS" | "Automation";
 const projects = [
   {
     id: 1,
-    title: "Nexus Intelligence",
+    title: "QuantumTrade AI",
     category: "AI",
-    description: "An AI-driven analytics dashboard giving real-time strategy insights for quantitative trading firms.",
-    result: "Increased insight speed by 300%",
-    tags: ["Next.js", "Python", "OpenAI"],
+    description: "High-frequency quantitative trading platform utilizing sub-100ms inference for real-time market positioning.",
+    challenge: "Processing 1M+ data points/sec with sub-ms latency requirements.",
+    solution: "Custom Rust-based inference engine with distributed LLM orchestration.",
+    result: "42% increase in trading alpha",
+    tags: ["Rust", "PyTorch", "gRPC"],
     color: "from-purple-500/20 to-transparent",
   },
   {
     id: 2,
-    title: "FlowOps SaaS",
+    title: "CloudScale CI/CD",
     category: "SaaS",
-    description: "A centralized platform for continuous integration and delivery tailored to enterprise-scale monorepos.",
-    result: "Reduced CI bottlenecks by 60%",
-    tags: ["React", "Express", "Kubernetes"],
+    description: "Next-generation DevOps infrastructure for enterprise-scale monorepos, automating 90% of deployment logic.",
+    challenge: "Scaling CI/CD pipelines for 500+ developers across global regions.",
+    solution: "Serverless build-topology with automated canary deployments.",
+    result: "75% reduction in deploy time",
+    tags: ["Go", "K8s", "Next.js"],
     color: "from-blue-500/20 to-transparent",
   },
   {
     id: 3,
-    title: "SyncAgent",
+    title: "AutoSupply Logic",
     category: "Automation",
-    description: "Multi-agent autonomous system for supply chain dynamic inventory reconciliation and forecasting.",
-    result: "Saved $2.4M in overstock",
-    tags: ["FastAPI", "PostgreSQL", "LangChain"],
+    description: "Multi-agent autonomous system for supply chain dynamic inventory reconciliation and predictive forecasting.",
+    challenge: "Fragmented inventory data across 12 countries and 50+ vendors.",
+    solution: "Autonomous agents with recursive self-correction logic.",
+    result: "Saved $4.2M in annual waste",
+    tags: ["Python", "LangChain", "OpenAI"],
     color: "from-cyan-500/20 to-transparent",
   },
   {
     id: 4,
-    title: "Nova Health",
+    title: "Nova Health Engine",
     category: "AI",
-    description: "Generative AI health assistant that automates patient on-boarding and pre-screening forms.",
-    result: "Cut wait times by 40%",
-    tags: ["Vue", "Django", "LLaMA-3"],
+    description: "Generative AI health platform automating patient triaging and medical record summarization with 99.9% accuracy.",
+    challenge: "Ensuring HIPAA compliance while maintaining high-fidelity LLM outputs.",
+    solution: "Secure RAG architecture with PII-redaction layers.",
+    result: "90% faster patient onboarding",
+    tags: ["React", "FastAPI", "AWS"],
     color: "from-indigo-500/20 to-transparent",
   },
 ];
@@ -131,20 +139,33 @@ export function Portfolio() {
               </div>
 
               {/* Content */}
-              <div className="p-8 flex flex-col gap-4 flex-1 bg-black/20">
-                <div className="space-y-2">
-                  <h3 className="text-2xl font-bold text-white group-hover:text-brand-cyan transition-colors">
+              <div className="p-8 flex flex-col gap-6 flex-1 bg-black/20">
+                <div className="space-y-3">
+                  <h3 className="text-2xl font-bold text-white group-hover:text-brand-cyan transition-colors leading-tight">
                     {project.title}
                   </h3>
-                  <p className="text-muted leading-relaxed line-clamp-2">
+                  <p className="text-muted text-sm leading-relaxed">
                     {project.description}
                   </p>
                 </div>
 
-                <div className="mt-auto pt-6 border-t border-white/5">
+                <div className="grid grid-cols-1 gap-4 py-4 border-y border-white/5">
+                   <div className="space-y-1">
+                      <p className="text-[10px] font-bold text-brand-purple uppercase tracking-widest opacity-70">The Challenge</p>
+                      <p className="text-xs text-white/60 leading-relaxed italic">"{project.challenge}"</p>
+                   </div>
+                   <div className="space-y-1">
+                      <p className="text-[10px] font-bold text-brand-cyan uppercase tracking-widest opacity-70">The Solution</p>
+                      <p className="text-xs text-white/60 leading-relaxed">{project.solution}</p>
+                   </div>
+                </div>
+
+                <div className="mt-auto pt-2">
                   <div className="flex items-center gap-3">
-                     <span className="w-2 h-2 rounded-full bg-brand-purple animate-pulse" />
-                     <p className="text-sm font-semibold text-white/90">
+                     <div className="w-8 h-8 rounded-full bg-brand-cyan/10 flex items-center justify-center border border-brand-cyan/20">
+                        <ArrowUpRight className="w-4 h-4 text-brand-cyan" />
+                     </div>
+                     <p className="text-sm font-bold text-white">
                        {project.result}
                      </p>
                   </div>

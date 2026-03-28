@@ -2,46 +2,50 @@
 
 import { motion } from "framer-motion";
 import { Check, Sparkles } from "lucide-react";
+import { openCalendly } from "./CalendlyProvider";
 
 const plans = [
   {
-    name: "MVP Launchpad",
-    price: "$8k - $12k",
-    description: "Perfect for early validation and seed startups.",
+    name: "AI Strategy Audit",
+    price: "$2,500",
+    description: "Deep-dive technical assessment of your AI roadmap. 2-day session with a senior architect.",
     features: [
-      "Core architecture setup",
-      "Authentication & DB config",
-      "2-4 weeks delivery",
-      "Basic AI integrations",
-      "1 month post-launch support"
+      "Technical feasibility analysis",
+      "Model vs API evaluation",
+      "Token cost forecasting",
+      "MVP scoping document",
+      "Immediate Q&A with Senior CTO"
     ],
     highlight: false,
+    cta: "Book Audit"
   },
   {
-    name: "Product Sprint+",
-    price: "$15k - $30k",
-    description: "For startups needing robust, scalable mechanics.",
+    name: "Production Engine",
+    price: "$15k - $25k",
+    description: "Our core offering. We build and ship your flagship AI product in sub-40 days. 1 slot remaining for Q2.",
     features: [
-      "Advanced multi-agent AI features",
-      "High-availability infrastructure",
-      "Custom UI/UX component library",
-      "CI/CD pipelines implemented",
-      "3 months priority engineering support"
+      "Full custom UI/UX design",
+      "Proprietary RAG architecture",
+      "Sub-100ms inference targets",
+      "Production-ready deployment",
+      "Dedicated 24/7 Slack channel"
     ],
     highlight: true,
+    cta: "Secure Slot"
   },
   {
-    name: "Custom Enterprise",
-    price: "Let's Talk",
-    description: "Complex distributed systems for established orgs.",
+    name: "Venture Partner",
+    price: "Custom",
+    description: "Long-term engineering partnership. Continuous R&D and scale-out for enterprise AI systems.",
     features: [
-      "Dedicated senior engineering team",
-      "Custom compliance & security",
-      "Legacy codebase migration",
-      "SLA & priority response",
-      "Continuous strategy consulting"
+      "Fractional CTO advisory",
+      "Custom Fine-tuning training",
+      "Post-deployment R&D cycles",
+      "Infinite scaling infrastructure",
+      "Direct phone access to Founders"
     ],
     highlight: false,
+    cta: "Discuss Venture"
   },
 ];
 
@@ -57,18 +61,18 @@ export function Pricing() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold tracking-tight"
+          className="text-4xl md:text-5xl font-bold tracking-tight text-white"
         >
-          Transparent <span className="text-gradient">Pricing</span>
+          Investment <span className="text-gradient">Tiers</span>
         </motion.h2>
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-lg text-muted max-w-2xl mx-auto"
+          className="text-lg text-muted max-w-2xl mx-auto font-medium"
         >
-          Invest in top-tier architecture without the agency bloated costs.
+          Transparent, value-based pricing designed for growth-stage founders who prioritize velocity over cost-saving.
         </motion.p>
       </div>
 
@@ -80,53 +84,53 @@ export function Pricing() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1, duration: 0.5 }}
-            className={`relative rounded-3xl p-8 transition-all duration-300 ${
+            className={`relative rounded-[40px] p-10 transition-all duration-300 ${
               plan.highlight 
-              ? "glass-dark border border-brand-cyan/30 shadow-[0_0_50px_rgba(6,182,212,0.15)] scale-100 md:scale-105 z-20 hover:shadow-[0_0_80px_rgba(139,92,246,0.2)]" 
-              : "glass border border-white/5 hover:border-white/10 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] z-10"
+              ? "bg-[#0A0A0A]/80 border-2 border-brand-cyan/40 shadow-[0_0_80px_rgba(6,182,212,0.1)] scale-100 md:scale-110 z-20 hover:border-brand-cyan transition-all" 
+              : "bg-white/[0.02] border border-white/5 hover:border-white/10 z-10"
             }`}
           >
             {plan.highlight && (
-              <div className="absolute -top-4 left-0 right-0 flex justify-center">
-                <div className="bg-gradient-to-r from-brand-purple to-brand-cyan text-white text-xs font-bold px-4 py-1.5 rounded-full flex items-center gap-1 shadow-[0_0_15px_rgba(6,182,212,0.5)]">
-                  <Sparkles className="w-3 h-3" /> Most Popular
+              <div className="absolute -top-5 left-0 right-0 flex justify-center">
+                <div className="bg-gradient-to-r from-brand-purple to-brand-cyan text-white text-[10px] font-black px-4 py-2 rounded-full flex items-center gap-2 shadow-[0_0_20px_rgba(6,182,212,0.5)] uppercase tracking-widest">
+                  <Sparkles className="w-3 h-3" /> Most Requested
                 </div>
               </div>
             )}
             
-            <div className="space-y-6 flex flex-col h-full">
+            <div className="space-y-8 flex flex-col h-full">
               <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-white">{plan.name}</h3>
-                <div className="flex items-baseline text-4xl font-extrabold tracking-tight text-white mb-2">
+                <h3 className="text-2xl font-bold text-white tracking-tight">{plan.name}</h3>
+                <div className="flex items-baseline text-4xl font-black tracking-tighter text-white mb-2">
                   <span className={plan.highlight ? "text-gradient" : ""}>{plan.price}</span>
                 </div>
-                <p className="text-sm text-muted">
-                  {plan.description}
+                <p className="text-sm text-muted font-medium italic">
+                  "{plan.description}"
                 </p>
               </div>
 
-              <div className="w-full h-px bg-white/10 my-2" />
+              <div className="w-full h-px bg-white/5 my-2" />
 
-              <ul className="space-y-4 flex-1">
+              <ul className="space-y-5 flex-1">
                 {plan.features.map(f => (
-                  <li key={f} className="flex gap-3 text-sm text-white/80 items-start">
-                    <Check className={`w-5 h-5 flex-shrink-0 ${plan.highlight ? "text-brand-cyan" : "text-white/50"}`} />
+                  <li key={f} className="flex gap-4 text-sm text-white/70 font-medium items-start leading-snug">
+                    <Check className={`w-5 h-5 flex-shrink-0 mt-0.5 ${plan.highlight ? "text-brand-cyan" : "text-white/30"}`} />
                     <span>{f}</span>
                   </li>
                 ))}
               </ul>
 
               <div className="pt-6 mt-auto">
-                <a 
-                  href="#contact"
-                  className={`block text-center flex items-center justify-center w-full py-4 rounded-xl font-semibold transition-all duration-300 ${
+                <button 
+                  onClick={openCalendly}
+                  className={`block text-center flex items-center justify-center w-full py-5 rounded-2xl font-bold transition-all duration-500 ${
                     plan.highlight
-                    ? "bg-white text-[#0A0A0A] hover:bg-white/90 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                    ? "bg-white text-black hover:bg-white/90 shadow-[0_0_40px_rgba(255,255,255,0.2)]"
                     : "bg-white/5 text-white border border-white/10 hover:bg-white/10"
                   }`}
                 >
-                  {plan.name === "Custom Enterprise" ? "Contact Us" : "Start Project"}
-                </a>
+                  {plan.cta}
+                </button>
               </div>
             </div>
           </motion.div>
