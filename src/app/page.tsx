@@ -1,26 +1,33 @@
+import { AnimatedBackground } from "@/components/AnimatedBackground";
+import { CalendlyProvider } from "@/components/CalendlyProvider";
 import { Navigation } from "@/components/navigation";
-import { Hero } from "@/components/sections/hero";
-import { Services } from "@/components/sections/skills";
-import { Team } from "@/components/sections/team";
-import { Projects } from "@/components/sections/projects";
-import { Approach } from "@/components/sections/approach";
-import { HowWeWork } from "@/components/sections/how-it-works";
-import { Pricing } from "@/components/sections/pricing";
-import { Contact } from "@/components/sections/contact";
+import { Hero } from "@/components/Hero";
+import { Services } from "@/components/Services";
+import { Portfolio } from "@/components/Portfolio";
+import { BookingAssistant } from "@/components/BookingAssistant";
+import { HowWeWork } from "@/components/HowWeWork";
+import { Pricing } from "@/components/Pricing";
+import { Contact } from "@/components/Contact";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
     return (
-        <main className="min-h-screen selection:bg-accent/30">
-            <Navigation />
-            <Hero />
-            <Services />
-            {/* <Team /> */}
-            <Approach />
-            <HowWeWork />
-            <Pricing />
-            <Projects />
-            <Contact />
+        <main className="min-h-screen selection:bg-brand-purple/30 font-sans text-foreground bg-[#050505] overflow-x-hidden relative">
+            <AnimatedBackground />
+            <CalendlyProvider />
+            
+            <div className="relative z-10 w-full flex flex-col items-center">
+              <Navigation />
 
+              <Hero />
+              <div id="services"><Services /></div>
+              <div id="process"><HowWeWork /></div>
+              <div id="projects"><Portfolio /></div>
+              <BookingAssistant />
+              <div id="pricing"><Pricing /></div>
+              <div id="contact"><Contact /></div>
+              <Footer />
+            </div>
         </main>
     );
 }
