@@ -57,7 +57,7 @@ const plans = [
 
 export function Pricing() {
   return (
-    <section className="py-24 px-6 lg:px-12 max-w-7xl mx-auto relative z-10 w-full">
+    <section className="py-24 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto relative z-10 w-full">
       <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
         <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-brand-purple to-brand-cyan opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"></div>
       </div>
@@ -67,7 +67,7 @@ export function Pricing() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold tracking-tight text-white"
+          className="text-3xl sm:text-5xl font-black tracking-tighter text-white"
         >
           Investment <span className="text-gradient">Tiers</span>
         </motion.h2>
