@@ -19,41 +19,41 @@ export function Contact() {
   };
 
   return (
-    <section className="py-32 px-6 lg:px-12 max-w-7xl mx-auto relative z-10 w-full mb-12 border-t border-white/5 bg-gradient-to-b from-transparent to-black/20">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section className="py-24 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto relative z-10 w-full mb-12 border-t border-white/5 bg-gradient-to-b from-transparent to-black/20">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Left Side */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="space-y-8"
+          className="space-y-8 text-center lg:text-left"
         >
-          <div className="space-y-4">
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white leading-[1.1]">
-              Ready to <span className="text-gradient">build</span><br />
+          <div className="space-y-6">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight text-white leading-[1.1] text-balance">
+              Ready to <span className="text-gradient">build</span><br className="hidden sm:block" />
               the future?
             </h2>
-            <p className="text-lg text-muted max-w-md">
+            <p className="text-lg text-muted max-w-md mx-auto lg:mx-0 font-medium">
               Whether you need to launch an MVP or rebuild legacy infrastructure into an AI-first system, we're your partner.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <button
               onClick={() => window.open('https://wa.me/1234567890', '_blank')}
-              className="flex items-center justify-center gap-2 group px-8 py-4 rounded-xl text-lg font-medium text-white transition-all overflow-hidden bg-brand-cyan/10 hover:bg-brand-cyan/20 border border-brand-cyan/30 shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:shadow-[0_0_30px_rgba(6,182,212,0.3)]"
+              className="flex items-center justify-center gap-2 group px-8 py-5 rounded-2xl text-lg font-black text-white transition-all overflow-hidden bg-brand-cyan/10 hover:bg-brand-cyan/20 border border-brand-cyan/30 shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] active:scale-95"
             >
               <MessageSquare className="w-5 h-5" /> Chat on WhatsApp
             </button>
 
             <button
               onClick={handleCopy}
-              className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg font-medium text-muted hover:text-white glass glass-hover transition-all w-full sm:w-auto border border-white/10"
+              className="flex items-center justify-center gap-2 px-8 py-5 rounded-2xl text-lg font-black text-muted hover:text-white glass glass-hover transition-all w-full sm:w-auto border border-white/10 active:scale-95"
             >
               {copied ? (
                 <span className="flex items-center gap-2 text-green-400"><CheckCircle2 className="w-5 h-5" /> Copied</span>
               ) : (
-                <span className="flex items-center gap-2"><Mail className="w-5 h-5 text-brand-purple" /> {email} <Copy className="w-4 h-4 ml-2 opacity-50" /></span>
+                <span className="flex items-center gap-2 max-w-full overflow-hidden truncate"><Mail className="w-5 h-5 text-brand-purple" /> {email}</span>
               )}
             </button>
           </div>
