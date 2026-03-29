@@ -44,28 +44,16 @@ export function Hero() {
 
           <div className="space-y-6">
             <h1 className="text-6xl sm:text-7xl lg:text-[5.5rem] font-black tracking-tighter text-white leading-[0.85] text-balance">
-               {isFounderMode ? "Scale. No Fluff." : "We Ship AI"} <br />
-               <div className="h-[1.1em] overflow-hidden relative my-2">
-                  <AnimatePresence mode="wait">
-                     <motion.span
-                       key={textIndex}
-                       initial={{ y: 60, opacity: 0, rotateX: -45 }}
-                       animate={{ y: 0, opacity: 1, rotateX: 0 }}
-                       exit={{ y: -60, opacity: 0, rotateX: 45 }}
-                       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                       className="text-gradient absolute inset-0 block origin-left"
-                     >
-                       {words[textIndex]}
-                     </motion.span>
-                  </AnimatePresence>
-               </div>
-               {isFounderMode ? "Just results." : "in 30 Days."}
+               {isFounderMode 
+                 ? <><span className="text-gradient">Scale Your</span> <br /> Engineering Moat.</>
+                 : <>We Build <span className="text-gradient">AI Products</span> <br /> That Generate Revenue.</>
+               }
             </h1>
             <p className="text-xl sm:text-2xl text-muted text-balance max-w-xl leading-relaxed font-bold">
-              {isFounderMode 
-                ? "Zero meetings. Deep engineering only. We ship your flagship product in 4 weeks."
-                : "From strategy blueprint to production-grade deployment. We handle the engineering complexity, you own the results."
-              }
+               {isFounderMode 
+                 ? "Zero fluff. Deep engineering leverage. We ship your flagship roadmap in 4 weeks."
+                 : "From idea to production in 30 days. No fluff. Just results."
+               }
             </p>
           </div>
 
@@ -76,20 +64,21 @@ export function Hero() {
                 className="relative group px-12 py-6 rounded-2xl text-xl font-black text-black transition-all overflow-hidden bg-white hover:bg-white/90 shadow-[0_0_50px_rgba(255,255,255,0.2)] hover:shadow-[0_0_80px_rgba(255,255,255,0.4)] flex items-center justify-center border-none flex-1"
               >
                  <span className="relative z-10 flex items-center gap-3">
-                   Start Your AI Plan <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                   {isFounderMode ? "Secure Q2 Dev Slot" : "Start Your AI Project"} <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                  </span>
               </button>
               <button 
                 onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
                 className="px-12 py-6 rounded-2xl bg-white/[0.03] border border-white/10 text-white font-black text-xl hover:bg-white/5 hover:border-white/20 transition-all duration-500 backdrop-blur-xl flex items-center justify-center gap-3 group flex-1"
               >
-                Explore Case Studies
+                {isFounderMode ? "ROI Verification" : "View Case Studies"}
               </button>
             </div>
             <div className="flex items-center gap-3 text-white/40 text-[10px] sm:text-xs font-black uppercase tracking-widest pl-2">
-               <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-green-500" /> Free technical blueprint in 60 seconds</span>
-               <span className="w-[1px] h-3 bg-white/10" />
-               <span>No credit card required</span>
+               <span className="flex items-center gap-2">
+                 <div className={`w-1.5 h-1.5 rounded-full ${isFounderMode ? "bg-brand-purple animate-pulse shadow-[0_0_10px_rgba(139,92,246,0.5)]" : "bg-brand-cyan"}`} />
+                 {isFounderMode ? "High-Leverage Engineering Only" : "Built using OpenAI, Next.js, Pinecone, Supabase"}
+               </span>
             </div>
           </div>
 

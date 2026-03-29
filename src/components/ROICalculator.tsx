@@ -3,11 +3,13 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Calculator, Zap, Users } from "lucide-react";
+import { WaitlistModal } from "./WaitlistModal";
 
 export function ROICalculator() {
   const [employees, setEmployees] = useState(10);
   const [salary, setSalary] = useState(80000);
   const [automationRate, setAutomationRate] = useState(0.3); // 30% savings
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const annualCost = employees * salary;
   const annualSavings = annualCost * automationRate;
@@ -16,6 +18,11 @@ export function ROICalculator() {
 
   return (
     <section className="py-24 px-6 lg:px-12 max-w-7xl mx-auto relative z-10 w-full mb-12">
+      <WaitlistModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        productName="ROI Detailed Report" 
+      />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div className="space-y-8">
            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-[10px] font-black tracking-widest uppercase">
@@ -91,8 +98,11 @@ export function ROICalculator() {
                  </div>
               </div>
 
-              <button className="w-full py-5 rounded-2xl bg-brand-cyan text-black font-black text-lg hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all">
-                 Generate Detailed Audit
+              <button 
+                onClick={() => setIsModalOpen(true)}
+                className="w-full py-5 rounded-2xl bg-brand-cyan text-black font-black text-lg hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all"
+              >
+                 Get Detailed ROI Breakdown
               </button>
            </div>
            

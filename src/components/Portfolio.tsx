@@ -72,7 +72,7 @@ export function Portfolio() {
 
   return (
     <section className="py-24 px-6 lg:px-12 max-w-7xl mx-auto relative z-10 w-full">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-8">
         <div className="space-y-4 max-w-2xl">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -127,8 +127,9 @@ export function Portfolio() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.4, type: "spring", bounce: 0.3 }}
-              className="group cursor-pointer relative glass rounded-3xl overflow-hidden flex flex-col hover:shadow-2xl hover:shadow-brand-blue/10 transition-all duration-300 border border-white/5 hover:border-white/20"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3, type: "spring", bounce: 0.3 }}
+              className="group cursor-pointer relative glass rounded-3xl overflow-hidden flex flex-col hover:shadow-[0_0_50px_rgba(255,255,255,0.05)] transition-all duration-300 border border-white/5 hover:border-white/20"
             >
               {/* Abstract Cover / Background Accent */}
               <div className={`h-40 w-full bg-gradient-to-br ${project.color} border-b border-white/5 flex items-end p-6 relative overflow-hidden`}>

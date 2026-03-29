@@ -41,7 +41,7 @@ const services = [
 export function Services() {
   return (
     <section className="py-24 px-6 lg:px-12 max-w-7xl mx-auto relative z-10 w-full">
-      <div className="text-center mb-16 space-y-4">
+      <div className="text-center mb-24 space-y-4">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -68,9 +68,10 @@ export function Services() {
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.02 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.1, duration: 0.5 }}
-            className={`group relative rounded-2xl p-6 glass border border-white/5 transition-all duration-300 overflow-hidden cursor-pointer ${service.borderColor} ${service.shadow}`}
+            transition={{ delay: index * 0.1, duration: 0.3 }}
+            className={`group relative rounded-2xl p-6 glass border border-white/5 transition-all duration-300 overflow-hidden cursor-pointer ${service.borderColor} hover:shadow-[0_0_50px_rgba(255,255,255,0.05)]`}
           >
             {/* Background Gradient Effect */}
             <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />

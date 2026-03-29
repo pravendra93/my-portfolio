@@ -77,13 +77,16 @@ export function Qualification() {
             </ul>
 
             {i === 0 && (
-              <div className="pt-6 border-t border-white/10">
+              <div className="pt-6 border-t border-white/10 space-y-4">
                  <button 
                   onClick={openCalendly}
-                  className="w-full py-4 rounded-2xl bg-white text-[#0A0A0A] font-black flex items-center justify-center gap-2 group hover:bg-white/90 transition-all"
+                  className="w-full py-4 rounded-2xl bg-white text-[#0A0A0A] font-black flex items-center justify-center gap-2 group hover:bg-white/90 transition-all shadow-[0_0_30px_rgba(255,255,255,0.15)]"
                  >
-                    Apply for Next Slot <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    Book Strategy Call <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                  </button>
+                 <p className="text-[10px] font-black uppercase text-center tracking-widest text-green-500 animate-pulse">
+                   Only 2 slots available this month
+                 </p>
               </div>
             )}
           </motion.div>

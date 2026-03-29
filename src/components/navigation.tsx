@@ -24,6 +24,7 @@ export function Navigation() {
         { name: "Process", href: "#process" },
         { name: "Planner", href: "#planner" },
         { name: "Work", href: "#projects" },
+        { name: "Lab", href: "#lab" },
         { name: "Pricing", href: "#pricing" },
         { name: "Contact", href: "#contact" },
     ];
