@@ -18,7 +18,7 @@ const generateWaitlistHTML = () => `
     </ul>
   </div>
   <div style="text-align: center; margin-top: 40px;">
-    <a href="https://calendly.com/rakrilabs" style="display: inline-block; padding: 20px 40px; background-color: #FFFFFF; color: #000000; font-weight: 900; border-radius: 20px; text-decoration: none; text-transform: uppercase; font-size: 14px;">Book Strategy Call</a>
+    <a href="https://rakrilabs.zohobookings.in/#/421636000000040050" style="display: inline-block; padding: 20px 40px; background-color: #FFFFFF; color: #000000; font-weight: 900; border-radius: 20px; text-decoration: none; text-transform: uppercase; font-size: 14px;">Book Strategy Call</a>
   </div>
 </div>
 `;
@@ -54,7 +54,7 @@ const generateBlueprintHTML = () => `
   </p>
 
   <div style="text-align: center; margin-top: 40px;">
-    <a href="https://calendly.com/rakrilabs" style="display: inline-block; padding: 20px 40px; background-color: #06B6D4; color: #000000; font-weight: 900; border-radius: 20px; text-decoration: none; text-transform: uppercase; font-size: 14px; letter-spacing: 1px;">Let’s map your project</a>
+    <a href="https://rakrilabs.zohobookings.in/#/421636000000040050" style="display: inline-block; padding: 20px 40px; background-color: #06B6D4; color: #000000; font-weight: 900; border-radius: 20px; text-decoration: none; text-transform: uppercase; font-size: 14px; letter-spacing: 1px;">Let’s map your project</a>
   </div>
 
   <div style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); pt: 24px;">
