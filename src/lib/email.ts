@@ -1,4 +1,5 @@
-import nodemailer from 'nodemailer';
+import { sendEmail } from './mailService';
+import path from 'path';
 
 // Waitlist Template
 const generateWaitlistHTML = () => `
@@ -17,7 +18,7 @@ const generateWaitlistHTML = () => `
     </ul>
   </div>
   <div style="text-align: center; margin-top: 40px;">
-    <a href="https://calendly.com/rakrilabs" style="display: inline-block; padding: 20px 40px; background-color: #FFFFFF; color: #000000; font-weight: 900; border-radius: 20px; text-decoration: none; text-transform: uppercase; font-size: 14px;">Book Strategy Call</a>
+    <a href="https://rakrilabs.zohobookings.in/#/421636000000040050" style="display: inline-block; padding: 20px 40px; background-color: #FFFFFF; color: #000000; font-weight: 900; border-radius: 20px; text-decoration: none; text-transform: uppercase; font-size: 14px;">Book Strategy Call</a>
   </div>
 </div>
 `;
@@ -53,7 +54,7 @@ const generateBlueprintHTML = () => `
   </p>
 
   <div style="text-align: center; margin-top: 40px;">
-    <a href="https://calendly.com/rakrilabs" style="display: inline-block; padding: 20px 40px; background-color: #06B6D4; color: #000000; font-weight: 900; border-radius: 20px; text-decoration: none; text-transform: uppercase; font-size: 14px; letter-spacing: 1px;">Let’s map your project</a>
+    <a href="https://rakrilabs.zohobookings.in/#/421636000000040050" style="display: inline-block; padding: 20px 40px; background-color: #06B6D4; color: #000000; font-weight: 900; border-radius: 20px; text-decoration: none; text-transform: uppercase; font-size: 14px; letter-spacing: 1px;">Let’s map your project</a>
   </div>
 
   <div style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); pt: 24px;">
@@ -63,40 +64,36 @@ const generateBlueprintHTML = () => `
 </div>
 `;
 
+/**
+ * sendWaitlistEmail - Helper to send specific waitlist/blueprint emails
+ */
 export async function sendWaitlistEmail(toEmail: string, isBlueprint: boolean = false) {
-  const user = process.env.EMAIL_USER;
-  const pass = process.env.EMAIL_PASS;
-
-  if (!user || !pass) {
-    console.warn('⚠️ EMAIL_USER/PASS missing. Mocking email locally...');
-    return;
-  }
-
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: { user, pass },
-  });
-
-  const mailOptions: any = {
-    from: `"RakriLabs 🚀" <${user}>`,
-    to: toEmail,
-    subject: isBlueprint ? "How we build AI products in weeks (not months)" : "You're on the RakriLabs waitlist 🚀",
-    html: isBlueprint ? generateBlueprintHTML() : generateWaitlistHTML(),
-  };
-
-  if (isBlueprint) {
-    mailOptions.attachments = [
-      {
-        filename: 'ai-product-blueprint.pdf',
-        path: process.cwd() + '/public/ai-product-blueprint.pdf'
-      }
-    ];
-  }
+  const subject = isBlueprint 
+    ? "How we build AI products in weeks (not months)" 
+    : "You're on the RakriLabs waitlist 🚀";
+  
+  const html = isBlueprint ? generateBlueprintHTML() : generateWaitlistHTML();
+  
+  const attachments = isBlueprint ? [
+    {
+      filename: 'ai-product-blueprint.pdf',
+      path: path.join(process.cwd(), 'public', 'ai-product-blueprint.pdf')
+    }
+  ] : [];
 
   try {
-    await transporter.sendMail(mailOptions);
-    console.log(`✅ ${isBlueprint ? 'Blueprint' : 'Waitlist'} email sent to ${toEmail}`);
-  } catch (error) {
-    console.error('❌ Error sending email:', error);
+    const result = await sendEmail({
+      to: toEmail,
+      subject,
+      html,
+      attachments
+    });
+    
+    if (result.success) {
+      console.log(`✅ ${isBlueprint ? 'Blueprint' : 'Waitlist'} email sent to ${toEmail}`);
+    }
+  } catch (error: any) {
+    console.error('❌ Failed to send waitlist confirmation:', error.message);
+    throw error;
   }
 }

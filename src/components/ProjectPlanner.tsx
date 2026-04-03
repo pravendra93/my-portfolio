@@ -35,29 +35,29 @@ export function ProjectPlanner() {
   const generatePlan = (finalAnswers: Answers): PlanResult => {
     const { timeline, budget } = finalAnswers;
 
-    if (timeline === "2–4 Weeks") {
+    if (budget === "$20k+") {
       return {
-        name: "MVP Launchpad",
-        cost: "$8k - $12k",
-        timeline: "4 Weeks",
-        description: "Focus on speed to market. We'll build your core value proposition using high-performance architecture."
+        name: "AI Production Engine",
+        cost: "$15k - $25k+",
+        timeline: "8–12 Weeks",
+        description: "Enterprise-grade distributed AI infrastructure built for scale, security, and complex RAG workflows."
       };
     }
 
-    if (budget === "$10k+") {
+    if (budget === "$8k–$15k") {
       return {
-        name: "Custom AI System",
-        cost: "$15k - $25k+",
-        timeline: "8–12 Weeks",
-        description: "Enterprise-grade distributed AI infrastructure built for scale, security, and complex multi-agent workflows."
+        name: "AI Growth System",
+        cost: "$7,999+",
+        timeline: "4–6 Weeks",
+        description: "Build your flagship operations engine. Focus on high-impact AI workflows and custom UI/UX."
       };
     }
 
     return {
-      name: "Starter Build Plan",
-      cost: "$5k - $10k",
-      timeline: "4–6 Weeks",
-      description: "Ideal for early validation. Lean architecture focused on your most critical business automation."
+      name: "AI Launchpad",
+      cost: "$4,599",
+      timeline: "2–3 Weeks",
+      description: "Quick validation and high-ROI automation. Get your first AI system live and generating value."
     };
   };
 
@@ -202,7 +202,7 @@ export function ProjectPlanner() {
                   <p className="text-muted text-sm font-medium">Select a range to help us align engineering resources.</p>
                 </div>
                 <div className="grid grid-cols-1 gap-4">
-                  {["$2k–$5k", "$5k–$10k", "$10k+"].map((opt) => (
+                  {["$4.5k–$8k", "$8k–$15k", "$20k+"].map((opt) => (
                     <button
                       key={opt}
                       onClick={() => handleSelect("budget", opt)}

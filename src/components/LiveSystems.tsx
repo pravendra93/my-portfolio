@@ -1,50 +1,53 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageSquare, Database, Zap, ArrowRight, PlayCircle } from "lucide-react";
+import { MessageSquare, Database, Zap, ArrowRight, PlayCircle, BarChart3 } from "lucide-react";
 
 const systems = [
   {
-    title: "AI Support System",
-    description: "24/7 sub-200ms latency customer success agent with human-like nuance.",
+    title: "AI Response Engine",
+    description: "24/7 sub-200ms latency customer success agent processing 10,000+ monthly queries.",
     icon: MessageSquare,
-    color: "from-brand-purple/20 to-transparent",
-    accent: "text-brand-purple"
+    color: "from-amber-400/20 to-transparent",
+    accent: "text-amber-400",
+    border: "border-amber-400/20"
   },
   {
-    title: "RAG Knowledge Bot",
-    description: "Semantic search engine over 50,000+ pages of technical documentation.",
+    title: "Enterprise RAG Bot",
+    description: "Deep semantic search engine over entire internal documentation libraries.",
     icon: Database,
-    color: "from-brand-cyan/20 to-transparent",
-    accent: "text-brand-cyan"
+    color: "from-red-500/20 to-transparent",
+    accent: "text-red-500",
+    border: "border-red-500/20"
   },
   {
-    title: "Workflow Automation Tool",
-    description: "Automating 80% of repetitive enterprise logic with LLM-orchestrated flows.",
+    title: "Workflow Autopilot",
+    description: "Multi-agent systems orchestrating complex cross-platform business operations.",
     icon: Zap,
-    color: "from-blue-500/20 to-transparent",
-    accent: "text-blue-500"
+    color: "from-amber-400/20 to-transparent",
+    accent: "text-amber-400",
+    border: "border-amber-400/20"
   }
 ];
 
 export function LiveSystems() {
   return (
     <section className="py-24 px-6 lg:px-12 max-w-7xl mx-auto relative z-10 w-full mb-12">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+      <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
         <div className="space-y-4">
-           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/40 text-[10px] font-black uppercase tracking-[0.2em]">
-             <PlayCircle className="w-3 h-3 text-brand-cyan" /> Production Ready
+           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-amber-400 text-[10px] font-black uppercase tracking-[0.2em]">
+             <PlayCircle className="w-3 h-3" /> Production Status: Active
            </div>
            <h2 className="text-4xl lg:text-6xl font-black text-white tracking-tighter">
-             Live <span className="text-gradient">Systems</span>
+             Battle-Tested <br/><span className="bg-gradient-to-r from-amber-400 to-red-500 bg-clip-text text-transparent">AI Systems</span>
            </h2>
         </div>
-        <p className="text-muted text-lg max-w-md font-medium text-right hidden md:block">
-           Real-world deployments currently processing data for our engineering partners.
+        <p className="text-neutral-400 text-lg max-w-md font-medium text-right hidden md:block">
+           Real-world deployments currently automating operations for our high-growth partners.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {systems.map((system, i) => (
           <motion.div
             key={system.title}
@@ -65,14 +68,16 @@ export function LiveSystems() {
                
                <div className="space-y-3">
                   <h3 className="text-2xl font-black text-white">{system.title}</h3>
-                  <p className="text-muted text-sm leading-relaxed font-medium">
+                  <p className="text-neutral-400 text-sm leading-relaxed font-medium">
                     {system.description}
                   </p>
                </div>
 
-               <button className="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-white/40 group-hover:text-white transition-colors pt-4 border-t border-white/5 w-full">
-                  View Live Demo <ArrowRight className="w-4 h-4 ml-auto group-hover:translate-x-1 transition-transform" />
-               </button>
+               <div className="pt-4 border-t border-white/5">
+                  <button className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/40 group-hover:text-amber-400 transition-colors w-full">
+                     View System Case Study <ArrowRight className="w-4 h-4 ml-auto group-hover:translate-x-1 transition-transform" />
+                  </button>
+               </div>
             </div>
           </motion.div>
         ))}

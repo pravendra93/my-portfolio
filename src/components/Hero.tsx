@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Terminal, Sparkles } from "lucide-react";
+import { ArrowRight, Terminal, Sparkles, Play } from "lucide-react";
 import { useState, useEffect } from "react";
 import { openCalendly } from "./CalendlyProvider";
 import { useFounderMode } from "./FounderContext";
@@ -59,23 +59,30 @@ export function Hero() {
 
           <div className="flex flex-col items-center sm:items-start gap-8">
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 w-full">
+              <div className="flex flex-col items-center sm:items-start gap-2 flex-1 group">
+                <motion.a 
+                  href="https://stage.assistra.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="relative px-8 sm:px-12 py-5 sm:py-6 rounded-2xl text-lg sm:text-xl font-black text-black transition-all overflow-hidden bg-white hover:bg-white/90 shadow-[0_0_50px_rgba(255,255,255,0.2)] hover:shadow-[0_0_80px_rgba(255,255,255,0.4)] flex items-center justify-center border-none w-full"
+                >
+                  <span className="relative z-10 flex items-center gap-3">
+                    Try Demo <Play className="w-5 h-5 fill-current" />
+                  </span>
+                </motion.a>
+                <p className="text-[10px] sm:text-[11px] font-black text-white/20 uppercase tracking-widest pl-2 group-hover:text-white/40 transition-colors">
+                  Quick signup • Instant access
+                </p>
+              </div>
               <motion.button 
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => document.getElementById("planner")?.scrollIntoView({ behavior: "smooth" })} 
-                className="relative group px-8 sm:px-12 py-5 sm:py-6 rounded-2xl text-lg sm:text-xl font-black text-black transition-all overflow-hidden bg-white hover:bg-white/90 shadow-[0_0_50px_rgba(255,255,255,0.2)] hover:shadow-[0_0_80px_rgba(255,255,255,0.4)] flex items-center justify-center border-none w-full sm:flex-1"
+                onClick={openCalendly}
+                className="px-8 sm:px-12 py-5 sm:py-6 rounded-2xl bg-white/[0.03] border border-white/10 text-white font-black text-lg sm:text-xl hover:bg-white/5 hover:border-white/20 transition-all duration-500 backdrop-blur-xl flex items-center justify-center gap-3 group w-full sm:flex-1 h-fit"
               >
-                 <span className="relative z-10 flex items-center gap-3">
-                   {isFounderMode ? "Secure Q2 Dev Slot" : "Start Your AI Project"} <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
-                 </span>
-              </motion.button>
-              <motion.button 
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-                className="px-8 sm:px-12 py-5 sm:py-6 rounded-2xl bg-white/[0.03] border border-white/10 text-white font-black text-lg sm:text-xl hover:bg-white/5 hover:border-white/20 transition-all duration-500 backdrop-blur-xl flex items-center justify-center gap-3 group w-full sm:flex-1"
-              >
-                {isFounderMode ? "ROI Verification" : "View Case Studies"}
+                Book a Call <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
               </motion.button>
             </div>
             

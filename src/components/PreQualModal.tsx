@@ -10,7 +10,7 @@ export function PreQualModal({ isOpen, onClose, onConfirm }: { isOpen: boolean, 
 
   const questions = [
     {
-      q: "Is your budget above $5,000?",
+      q: "Is your investment budget at least $4,500?",
       options: ["Yes", "Not yet"]
     },
     {
