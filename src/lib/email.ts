@@ -1,4 +1,5 @@
-import nodemailer from 'nodemailer';
+import { sendEmail } from './mailService';
+import path from 'path';
 
 // Waitlist Template
 const generateWaitlistHTML = () => `
@@ -63,40 +64,36 @@ const generateBlueprintHTML = () => `
 </div>
 `;
 
+/**
+ * sendWaitlistEmail - Helper to send specific waitlist/blueprint emails
+ */
 export async function sendWaitlistEmail(toEmail: string, isBlueprint: boolean = false) {
-  const user = process.env.EMAIL_USER;
-  const pass = process.env.EMAIL_PASS;
-
-  if (!user || !pass) {
-    console.warn('⚠️ EMAIL_USER/PASS missing. Mocking email locally...');
-    return;
-  }
-
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: { user, pass },
-  });
-
-  const mailOptions: any = {
-    from: `"RakriLabs 🚀" <${user}>`,
-    to: toEmail,
-    subject: isBlueprint ? "How we build AI products in weeks (not months)" : "You're on the RakriLabs waitlist 🚀",
-    html: isBlueprint ? generateBlueprintHTML() : generateWaitlistHTML(),
-  };
-
-  if (isBlueprint) {
-    mailOptions.attachments = [
-      {
-        filename: 'ai-product-blueprint.pdf',
-        path: process.cwd() + '/public/ai-product-blueprint.pdf'
-      }
-    ];
-  }
+  const subject = isBlueprint 
+    ? "How we build AI products in weeks (not months)" 
+    : "You're on the RakriLabs waitlist 🚀";
+  
+  const html = isBlueprint ? generateBlueprintHTML() : generateWaitlistHTML();
+  
+  const attachments = isBlueprint ? [
+    {
+      filename: 'ai-product-blueprint.pdf',
+      path: path.join(process.cwd(), 'public', 'ai-product-blueprint.pdf')
+    }
+  ] : [];
 
   try {
-    await transporter.sendMail(mailOptions);
-    console.log(`✅ ${isBlueprint ? 'Blueprint' : 'Waitlist'} email sent to ${toEmail}`);
-  } catch (error) {
-    console.error('❌ Error sending email:', error);
+    const result = await sendEmail({
+      to: toEmail,
+      subject,
+      html,
+      attachments
+    });
+    
+    if (result.success) {
+      console.log(`✅ ${isBlueprint ? 'Blueprint' : 'Waitlist'} email sent to ${toEmail}`);
+    }
+  } catch (error: any) {
+    console.error('❌ Failed to send waitlist confirmation:', error.message);
+    throw error;
   }
 }

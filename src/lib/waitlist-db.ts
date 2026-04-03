@@ -24,9 +24,9 @@ export async function getWaitlist(): Promise<WaitlistEntry[]> {
 export async function addToWaitlist(entry: WaitlistEntry): Promise<void> {
   const waitlist = await getWaitlist();
 
-  // Prevent duplicate emails
+  // Prevent duplicate entries but return success silently for a better UX
   if (waitlist.some(e => e.email.toLowerCase() === entry.email.toLowerCase())) {
-    throw new Error('You are already on the waitlist! 🚀');
+    return;
   }
 
   waitlist.push(entry);

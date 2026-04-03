@@ -29,7 +29,7 @@ export function Qualification() {
         "You need a simple CRUD app with zero intelligent logic.",
         "You don't care about technical debt or long-term scale.",
         "You want to manage pixel-pushers instead of technical peers.",
-        "Your budget for a core product is under $5,000.",
+        "Your project investment is under $4,500.",
       ],
       icon: XCircle,
       color: "text-red-500",

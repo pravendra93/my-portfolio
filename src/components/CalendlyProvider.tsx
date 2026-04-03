@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PopupModal } from "react-calendly";
 import { PreQualModal } from "./PreQualModal";
 
 export function CalendlyProvider() {
-  const [isOpen, setIsOpen] = useState(false);
   const [isPreQualOpen, setIsPreQualOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+
+  // The Zoho Bookings Link provided by the user
+  const ZOHO_BOOKING_LINK = "https://rakrilabs.zohobookings.in/#/421636000000040050";
 
   useEffect(() => {
     setMounted(true);
@@ -18,35 +19,20 @@ export function CalendlyProvider() {
 
   const handleConfirmed = () => {
     setIsPreQualOpen(false);
-    setTimeout(() => {
-      setIsOpen(true);
-    }, 300);
+    // After pre-qualification, open Zoho Bookings
+    if (typeof window !== "undefined") {
+      window.open(ZOHO_BOOKING_LINK, "_blank");
+    }
   };
 
   if (!mounted) return null;
 
   return (
-    <>
-      <PreQualModal 
-        isOpen={isPreQualOpen} 
-        onClose={() => setIsPreQualOpen(false)} 
-        onConfirm={handleConfirmed} 
-      />
-      
-      <PopupModal
-        url="https://calendly.com/akshaykumar-ojha/30min"
-        onModalClose={() => setIsOpen(false)}
-        open={isOpen}
-        rootElement={document.body}
-        pageSettings={{
-          backgroundColor: "050505",
-          hideEventTypeDetails: false,
-          hideLandingPageDetails: false,
-          primaryColor: "06b6d4",
-          textColor: "ffffff"
-        }}
-      />
-    </>
+    <PreQualModal 
+      isOpen={isPreQualOpen} 
+      onClose={() => setIsPreQualOpen(false)} 
+      onConfirm={handleConfirmed} 
+    />
   );
 }
 
