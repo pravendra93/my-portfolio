@@ -57,21 +57,29 @@ export async function sendEmail(options: EmailOptions, retryCount = 0): Promise<
 
   // 2. Validate configuration
   if (!ZOHO_EMAIL || !ZOHO_APP_PASSWORD) {
-    const errorMsg = '❌ [SMTP ERROR] ZOHO_EMAIL or ZOHO_APP_PASSWORD missing in environment.';
+    const missing = [];
+    if (!ZOHO_EMAIL) missing.push('ZOHO_EMAIL');
+    if (!ZOHO_APP_PASSWORD) missing.push('ZOHO_APP_PASSWORD');
+
+    const errorMsg = `❌ [SMTP CONFIG ERROR] Missing: ${missing.join(', ')} in production environment.`;
     console.error(errorMsg);
-    if (process.env.NODE_ENV === 'development') return { success: false, error: 'Config missing' };
-    throw new Error('Email configuration missing');
+
+    // Graceful failure instead of throwing to prevent API crashes
+    return {
+      success: false,
+      error: 'Email service is currently offline.'
+    };
   }
 
   // 3. Select configuration (Fallback logic)
   // Attempt 465 (SSL) first, then 587 (TLS)
   const isFallback = retryCount > 0;
-  const config = isFallback 
+  const config = isFallback
     ? { port: 587, secure: false } // Fallback to Port 587
     : { port: 465, secure: true }; // Primary Port 465
-  
+
   const transporter = createTransporter(config);
-  
+
   const mailOptions = {
     from: `"RakriLabs 🚀" <${ZOHO_EMAIL}>`,
     to: options.to,
@@ -88,7 +96,7 @@ export async function sendEmail(options: EmailOptions, retryCount = 0): Promise<
   } catch (error: any) {
     const errorCode = error.code || 'UNKNOWN';
     const errorMsg = error.message || 'No error message';
-    
+
     console.error(`❌ [SMTP FAILURE] Port ${config.port} | Error: ${errorCode} | ${errorMsg}`);
 
     // 4. Handle specific common errors
@@ -105,7 +113,7 @@ export async function sendEmail(options: EmailOptions, retryCount = 0): Promise<
     if (retryCount < 2) { // Total 3 attempts (0, 1, 2)
       const nextRetry = retryCount + 1;
       const delay = Math.pow(2, nextRetry) * 1000; // 2s, 4s backoff
-      
+
       console.log(`🔄 [RETRY] Attempting retry #${nextRetry} in ${delay}ms...`);
       await new Promise(resolve => setTimeout(resolve, delay));
       return sendEmail(options, nextRetry);
