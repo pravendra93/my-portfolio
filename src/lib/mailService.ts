@@ -19,7 +19,7 @@ const createTransporter = (config: { port: number; secure: boolean }) => {
   const ZOHO_APP_PASSWORD = process.env.ZOHO_APP_PASSWORD;
 
   return nodemailer.createTransport({
-    host: 'smtp.zoho.in', // Using regional .in host for better compatibility
+    host: 'smtp.zoho.com', // Using global .com host for broader compatibility
     port: config.port,
     secure: config.secure,
     auth: {
@@ -81,7 +81,8 @@ export async function sendEmail(options: EmailOptions, retryCount = 0): Promise<
   const transporter = createTransporter(config);
 
   const mailOptions = {
-    from: `"RakriLabs 🚀" <${ZOHO_EMAIL}>`,
+    from: `"RakriLabs" <${ZOHO_EMAIL}>`,
+    replyTo: ZOHO_EMAIL,
     to: options.to,
     subject: options.subject,
     text: options.text,
