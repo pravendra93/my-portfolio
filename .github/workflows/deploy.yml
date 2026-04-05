@@ -39,7 +39,7 @@ jobs:
             docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GHCR_PAT }}
             docker pull ghcr.io/${{ github.repository }}/nextjs:latest
 
-            cd /my-portfolio
+            cd /home/my-portfolio
 
             docker compose down
             docker compose up -d
