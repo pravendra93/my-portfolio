@@ -46,7 +46,7 @@ export function Hero() {
             <h1 className="text-4xl sm:text-6xl lg:text-[5.5rem] font-black tracking-tighter text-white leading-[1.1] sm:leading-[0.85] text-balance">
               {isFounderMode
                 ? <><span className="text-gradient">Scale Your</span> <br className="hidden sm:block" /> Engineering Moat.</>
-                : <>We help you to Build your dream <span className="text-gradient">AI Products</span> <br className="hidden sm:block" /> That Generate Revenue.</>
+                : <>We Build <span className="text-gradient">AI Products</span> <br className="hidden sm:block" /> That Generate Revenue.</>
               }
             </h1>
             <p className="text-lg sm:text-2xl text-muted text-balance max-w-xl mx-auto sm:mx-0 leading-relaxed font-bold">
