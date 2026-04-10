@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Script from "next/script";
+
 import { Inter, Manrope } from "next/font/google"; // Using Manrope as it's closer to the "Studio" aesthetic often used
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -25,6 +27,11 @@ export default function RootLayout({
             <body className={cn(inter.variable, manrope.variable, "font-sans antialiased min-h-screen relative")}>
                 <div className="vignette-glow" />
                 {children}
+                <Script
+                    src={process.env.NEXT_PUBLIC_WIDGET_URL || "https://chat.stage.assistra.app/static/widget.js"}
+                    data-api-key="sk_live_OOdumK0XBDXLmb3AgZa-UZgQDjEkH-dI"
+                    strategy="afterInteractive"
+                />
             </body>
         </html>
     );
