@@ -28,7 +28,7 @@ export default function RootLayout({
                 <div className="vignette-glow" />
                 {children}
                 <Script
-                    src={process.env.NEXT_PUBLIC_WIDGET_URL || "https://chat.stage.assistra.app/static/widget.js"}
+                    src="https://assistra-widget-stage.sgp1.cdn.digitaloceanspaces.com/widget/loader.js"
                     data-api-key="sk_live_OOdumK0XBDXLmb3AgZa-UZgQDjEkH-dI"
                     strategy="afterInteractive"
                 />
