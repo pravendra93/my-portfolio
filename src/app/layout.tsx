@@ -32,23 +32,21 @@ export default function RootLayout({
                     data-api-key="sk_live_OOdumK0XBDXLmb3AgZa-UZgQDjEkH-dI"
                     strategy="afterInteractive"
                 />
-                {process.env.NEXT_PUBLIC_GTM_ID && (
-                    <>
-                        <Script
-                            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
-                            strategy="afterInteractive"
-                        />
-                        <Script id="google-analytics" strategy="afterInteractive">
-                            {`
+
+                <Script
+                    src={`https://www.googletagmanager.com/gtag/js?id=G-QQ0370P8WG`}
+                    strategy="afterInteractive"
+                />
+                <Script id="google-analytics" strategy="afterInteractive">
+                    {`
                                 window.dataLayer = window.dataLayer || [];
                                 function gtag(){dataLayer.push(arguments);}
                                 gtag('js', new Date());
 
-                                gtag('config', '${process.env.NEXT_PUBLIC_GTM_ID}');
+                                gtag('config', 'G-QQ0370P8WG');
                             `}
-                        </Script>
-                    </>
-                )}
+                </Script>
+
             </body>
         </html>
     );
