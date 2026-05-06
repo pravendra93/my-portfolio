@@ -16,7 +16,7 @@ export const metadata: Metadata = {
         apple: "/logo.png",
     },
 };
-
+console.log("GTM ID in Browser:", '${process.env.NEXT_PUBLIC_GTM_ID}');
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -32,20 +32,24 @@ export default function RootLayout({
                     data-api-key="sk_live_OOdumK0XBDXLmb3AgZa-UZgQDjEkH-dI"
                     strategy="afterInteractive"
                 />
-
-                <Script
-                    src={`https://www.googletagmanager.com/gtag/js?id=G-QQ0370P8WG`}
-                    strategy="afterInteractive"
-                />
-                <Script id="google-analytics" strategy="afterInteractive">
-                    {`
+                {(
+                    <>
+                        <Script
+                            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
+                            strategy="afterInteractive"
+                        />
+                        <Script id="google-analytics" strategy="afterInteractive">
+                            {`
+                                console.log("process.env.NEXT_PUBLIC_GTM_ID =>>>", process.env.NEXT_PUBLIC_GTM_ID)
                                 window.dataLayer = window.dataLayer || [];
                                 function gtag(){dataLayer.push(arguments);}
                                 gtag('js', new Date());
 
-                                gtag('config', 'G-QQ0370P8WG');
+                                gtag('config', '${process.env.NEXT_PUBLIC_GTM_ID}');
                             `}
-                </Script>
+                        </Script>
+                    </>
+                )}
 
             </body>
         </html>
