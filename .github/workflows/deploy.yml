@@ -12,8 +12,12 @@ permissions:
   contents: read
   packages: write
 
+concurrency:
+  group: production-deploy
+  cancel-in-progress: true
+
 env:
-  IMAGE: ghcr.io/${{ github.repository }}/nextjs
+  IMAGE: ghcr.io/${{ github.repository_owner }}/nextjs
 
 jobs:
   deploy:
@@ -21,13 +25,22 @@ jobs:
     environment: production
 
     steps:
-      # 1. Checkout specific ref (CRITICAL)
+      # 1. Checkout selected ref
       - name: Checkout
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.inputs.ref }}
 
-      # 2. Login to GHCR (use PAT, not GITHUB_TOKEN for consistency)
+      # 2. Generate deterministic SHA tag
+      - name: Generate Image Tag
+        run: |
+          TAG=$(git rev-parse HEAD)
+
+          echo "TAG=$TAG" >> $GITHUB_ENV
+
+          echo "Using image tag: $TAG"
+
+      # 3. Login to GHCR
       - name: Login GHCR
         uses: docker/login-action@v3
         with:
@@ -35,20 +48,24 @@ jobs:
           username: ${{ secrets.GHCR_USERNAME }}
           password: ${{ secrets.GHCR_PAT }}
 
-      # 3. Build with SHA tag (NO more latest-only)
+      # 4. Build & Push Docker image
       - name: Build & Push
         run: |
-          TAG=$(git rev-parse HEAD)
-
           docker build \
             --build-arg NEXT_PUBLIC_GTM_ID=${{ secrets.NEXT_PUBLIC_GTM_ID }} \
-            -t $IMAGE:$TAG .
-          docker tag $IMAGE:$TAG $IMAGE:latest
+            -t $IMAGE:${{ env.TAG }} .
 
-          docker push $IMAGE:$TAG
+          docker tag $IMAGE:${{ env.TAG }} $IMAGE:latest
+
+          docker push $IMAGE:${{ env.TAG }}
           docker push $IMAGE:latest
 
-      # 4. Deploy exact version
+      # 5. Verify pushed image exists
+      - name: Verify Image Exists
+        run: |
+          docker pull $IMAGE:${{ env.TAG }}
+
+      # 6. Deploy to server
       - name: Deploy to Droplet
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -59,17 +76,28 @@ jobs:
             set -e
 
             IMAGE=${{ env.IMAGE }}
-            TAG=${{ github.event.inputs.ref }}
+            TAG=${{ env.TAG }}
 
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} --password-stdin
 
             cd /home/my-portfolio
 
-            # pull exact version
+            echo "Deploying image: $IMAGE:$TAG"
+
+            # Pull exact image version
             docker pull $IMAGE:$TAG
 
+            # Inject tag into compose
             echo "IMAGE_TAG=$TAG" > .env
 
+            # Deploy updated container
             docker compose up -d
 
+            # Show running containers
             docker compose ps
+
+            # Show latest logs
+            docker compose logs --tail=50
+
+            # Cleanup dangling images
+            docker image prune -f

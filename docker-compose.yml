@@ -1,6 +1,6 @@
 services:
   nextjs:
-    build: .
+    image: ghcr.io/pravendra93/nextjs:${IMAGE_TAG}
     container_name: nextjs_app
     restart: always
     expose:
@@ -28,7 +28,6 @@ services:
 
 networks:
   app_network:
-
 
 volumes:
   caddy_data:
