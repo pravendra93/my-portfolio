@@ -97,7 +97,7 @@ jobs:
             docker compose ps
 
             # Show latest logs
-            docker compose logs --tail=50
+            # docker compose logs --tail=50
 
             # Cleanup dangling images
             docker image prune -f
