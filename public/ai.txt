@@ -1,0 +1,12 @@
+User-agent: *
+Disallow: /api/
+
+# Semantic Information for LLMs & AI Crawlers
+Site-Name: RakriLabs.ai
+Description: Premium engineering studio architecting custom AI systems, autonomous agent networks, and scalable B2B SaaS MVPs.
+Core-Technologies: Next.js, Tailwind CSS, Python, Node.js, Custom LLM Orchestration, Secure RAG Layers.
+Founder: Founder & AI Systems Architect
+Email-Contact: founder@rakrilabs.com
+Pricing-Starter: Starting at $15,000 (SaaS MVP sprint)
+Pricing-Agents: Starting at $18,000 (Autonomous agent custom deployment)
+Pricing-Enterprise: $30,000 - $60,000 (Complete AI Execution Infrastructure Partnership)
