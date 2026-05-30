@@ -21,9 +21,9 @@ export const metadata: Metadata = {
         "RakriLabs.ai",
         "AI engineering studio"
     ],
-    authors: [{ name: "RakriLabs Team", url: "https://rakrilabs.ai" }],
+    authors: [{ name: "RakriLabs Team", url: "https://rakrilabs.com" }],
     alternates: {
-        canonical: "https://rakrilabs.ai",
+        canonical: "https://rakrilabs.com",
     },
     robots: {
         index: true,
@@ -62,9 +62,6 @@ export const metadata: Metadata = {
         icon: "/favicon.ico",
         apple: "/logo.png",
     },
-    alternates: {
-        canonical: "https://rakrilabs.com",
-    },
 };
 
 const schemaMarkup = {
@@ -95,14 +92,14 @@ const schemaMarkup = {
             "@type": "ProfessionalService",
             "@id": "https://rakrilabs.ai/#service",
             "name": "RakriLabs.ai",
-            "url": "https://rakrilabs.ai",
+            "url": "https://rakrilabs.com",
             "telephone": "",
             "priceRange": "$$$$",
             "address": {
                 "@type": "PostalAddress",
                 "addressCountry": "US"
             },
-            "image": "https://rakrilabs.ai/logo.png",
+            "image": "https://rakrilabs.com/logo.png",
             "description": "Custom autonomous AI agent system design, scalable SaaS MVP development, and workflow automation orchestration."
         }
     ]
