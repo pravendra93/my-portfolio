@@ -5,8 +5,8 @@ import { Inter, Manrope } from "next/font/google"; // Using Manrope as it's clos
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap" });
 
 export const metadata: Metadata = {
     title: "RakriLabs.ai — AI Execution Infrastructure for B2B SaaS",
@@ -61,6 +61,9 @@ export const metadata: Metadata = {
     icons: {
         icon: "/favicon.ico",
         apple: "/logo.png",
+    },
+    alternates: {
+        canonical: "https://rakrilabs.com",
     },
 };
 
@@ -124,15 +127,15 @@ export default function RootLayout({
                 <Script
                     src="https://assistra-widget-stage.sgp1.cdn.digitaloceanspaces.com/widget/loader.js"
                     data-api-key="sk_live_OOdumK0XBDXLmb3AgZa-UZgQDjEkH-dI"
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                 />
                 {true && (
                     <>
                         <Script
                             src={`https://www.googletagmanager.com/gtag/js?id=G-QQ0370P8WG`}
-                            strategy="afterInteractive"
+                            strategy="lazyOnload"
                         />
-                        <Script id="google-analytics" strategy="afterInteractive">
+                        <Script id="google-analytics" strategy="lazyOnload">
                             {`
                                 window.dataLayer = window.dataLayer || [];
                                 function gtag(){dataLayer.push(arguments);}
