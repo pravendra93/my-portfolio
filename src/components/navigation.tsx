@@ -92,6 +92,7 @@ export function Navigation() {
                                 whileTap={{ scale: 0.9 }}
                                 onClick={toggleFounderMode}
                                 className="w-10 h-5 rounded-full bg-white/5 border border-white/10 relative p-1 group hover:border-brand-purple transition-all shadow-inner"
+                                aria-label="Toggle Founder Mode"
                             >
                                 <motion.div 
                                     animate={{ x: isFounderMode ? 20 : 0 }}
@@ -120,6 +121,7 @@ export function Navigation() {
                             whileTap={{ scale: 0.9 }}
                             className="lg:hidden z-[110] relative p-1.5 sm:p-2 text-white hover:bg-white/5 rounded-full transition-colors"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
                         >
                             {isMenuOpen ? <X size={20} className="sm:w-6 sm:h-6" /> : <Menu size={20} className="sm:w-6 sm:h-6" />}
                         </motion.button>
@@ -185,6 +187,7 @@ export function Navigation() {
                                         whileTap={{ scale: 0.9 }}
                                         onClick={toggleFounderMode}
                                         className="w-12 h-6 rounded-full bg-white/5 border border-white/10 relative p-1 transition-all"
+                                        aria-label="Toggle Founder Mode"
                                     >
                                         <motion.div 
                                             animate={{ x: isFounderMode ? 24 : 0 }}

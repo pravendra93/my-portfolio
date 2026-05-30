@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Check, Sparkles, X, ArrowRight, Zap, Target, TrendingUp, ShieldCheck } from "lucide-react";
 import { openCalendly } from "./CalendlyProvider";
+import Image from "next/image";
 
 const pricingData = [
   {
@@ -177,8 +178,8 @@ export function Pricing() {
             </div>
             <div className="flex -space-x-3">
                {[1,2,3,4,5].map(i => (
-                 <div key={i} className="w-10 h-10 rounded-full border-2 border-black bg-neutral-800 flex items-center justify-center text-[10px] font-bold text-neutral-400 overflow-hidden">
-                    <img src={`https://i.pravatar.cc/100?u=${i}`} alt="Client" />
+                 <div key={i} className="w-10 h-10 rounded-full border-2 border-black bg-neutral-800 flex items-center justify-center text-[10px] font-bold text-neutral-400 overflow-hidden relative">
+                    <Image src={`https://i.pravatar.cc/100?u=${i}`} alt="Client" width={40} height={40} className="object-cover" />
                  </div>
                ))}
             </div>

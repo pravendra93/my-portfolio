@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Quote, MessageCircleCode } from "lucide-react";
+import Image from "next/image";
 
 export function Testimonials() {
   const testimonials = [
@@ -61,7 +62,7 @@ export function Testimonials() {
             </p>
 
             <div className="mt-auto flex items-center gap-4 relative z-10">
-               <img src={t.avatar} alt={t.name} className="w-14 h-14 rounded-full border-2 border-brand-cyan shadow-[0_0_15px_rgba(6,182,212,0.3)] bg-white/5" />
+               <Image src={t.avatar} alt={t.name} width={56} height={56} className="w-14 h-14 rounded-full border-2 border-brand-cyan shadow-[0_0_15px_rgba(6,182,212,0.3)] bg-white/5" />
                <div className="flex flex-col">
                   <span className="font-bold text-white tracking-tight">{t.name}</span>
                   <span className="text-xs text-brand-purple font-bold uppercase tracking-widest">{t.role}</span>
