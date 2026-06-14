@@ -1,34 +1,17 @@
+version: "3.9"
+
 services:
-  nextjs:
-    image: ghcr.io/pravendra93/nextjs:${IMAGE_TAG}
-    container_name: nextjs_app
+  rakrilabs-web:
+    image: ghcr.io/pravendra93/nextjs:${IMAGE_TAG:-latest}
+    container_name: rakrilabs-web
     restart: always
     expose:
       - "3000"
-    networks:
-      - app_network
     env_file:
-      - .env.local
-
-  caddy:
-    image: caddy:2
-    container_name: caddy_server
-    restart: always
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
-      - caddy_data:/data
-      - caddy_config:/config
-    depends_on:
-      - nextjs
+      - .env
     networks:
-      - app_network
+      - shared_network
 
 networks:
-  app_network:
-
-volumes:
-  caddy_data:
-  caddy_config:
+  shared_network:
+    external: true
