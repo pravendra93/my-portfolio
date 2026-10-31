@@ -85,7 +85,7 @@ export function Qualification() {
                     Book Strategy Call <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                  </button>
                  <p className="text-[10px] font-black uppercase text-center tracking-widest text-green-500 animate-pulse">
-                   Only 2 slots available this month
+                   3 Booking Slots • 2 Slots Remaining for Q4 2026
                  </p>
               </div>
             )}

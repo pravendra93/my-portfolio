@@ -1,13 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, useSpring, useMotionValue } from "framer-motion";
+import { useEffect, useSyncExternalStore } from "react";
+import { motion, useSpring, useMotionValue, useReducedMotion } from "framer-motion";
+
+const emptySubscribe = () => () => {};
 
 export function MouseAura() {
-  const [isMounted, setIsMounted] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+  const isMounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
   
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
 
   // Smooth springs for high-end feel
   const springConfig = { damping: 30, stiffness: 100, mass: 1 };
@@ -15,7 +22,6 @@ export function MouseAura() {
   const smoothY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    setIsMounted(true);
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
@@ -23,9 +29,9 @@ export function MouseAura() {
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [mouseX, mouseY]);
 
-  if (!isMounted) return null;
+  if (!isMounted || shouldReduceMotion) return null;
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden">
@@ -43,7 +49,7 @@ export function MouseAura() {
         <div className="w-1.5 h-1.5 bg-brand-cyan rounded-full shadow-[0_0_10px_rgba(6,182,212,0.8)]" />
       </motion.div>
 
-      {/* Large Ambient Glow (Bloom) */}
+      {/* Large Ambient Glow */}
       <motion.div
         style={{
           x: smoothX,

@@ -1,12 +1,15 @@
 {
   "name": "my-portfolio",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint src",
+    "test:quarter": "node --experimental-strip-types src/lib/quarter.test.ts",
+    "validate:content": "node --experimental-strip-types scripts/validate-content.ts"
   },
   "dependencies": {
     "@formspree/react": "^3.0.0",

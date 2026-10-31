@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme inline {
+  --font-sans: var(--font-inter);
+}
+
 @theme {
   --color-background: #09090b;
   /* Zinc 950 - Dark Base */
@@ -75,8 +79,17 @@ html {
 body {
   color: var(--color-foreground);
   background: var(--color-background);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-manrope), var(--font-inter), Arial, Helvetica, sans-serif;
 }
 
 /* Technical Pointer Hand for all interactive elements */

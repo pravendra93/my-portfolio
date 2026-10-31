@@ -2,6 +2,9 @@ node_modules
 .agent
 .next
 # .env*
+.env
 .env.local
 .env.production
 .env.development
+*.tsbuildinfo
+.DS_Store

@@ -1,116 +1,191 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Play, Mic, Bot, Sparkles, ArrowRight } from "lucide-react";
-
-const assistra = {
-  title: "Assistra",
-  tag: "Flagship AI Assistant",
-  description: "A production-grade AI platform built to automate team workflows and handle mission-critical business logic.",
-  capabilities: [
-    { title: "Voice AI", icon: Mic, status: "Beta" },
-    { title: "Personal Assistant", icon: Bot, status: "Active" }
-  ],
-  demoUrl: "https://stage.assistra.app/",
-};
-
-const systems = [
-  { title: "DocuMind RAG", description: "Query 1M+ documents with sub-200ms latency.", status: "Live" },
-  { title: "Support OS", description: "Autonomous agents handling 90% of tickets.", status: "Beta" },
-  { title: "LogicForge", description: "Low-latency engine for business automation.", status: "Alpha" },
-];
+import { Bot, MessageSquare, ArrowRight, Sparkles, ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { assistraProduct } from "@/content/products/assistra";
+import { nivoraHQProduct } from "@/content/products/nivorahq";
+import { caseStudies } from "@/content/case-studies";
 
 export function Showcase() {
+  const publishedCaseStudies = caseStudies.filter((cs) => cs.published);
+
   return (
-    <section id="projects" className="py-32 px-6 max-w-7xl mx-auto relative z-10 w-full font-sans">
-      <div className="text-center mb-20">
-        <motion.div
-           initial={{ opacity: 0, scale: 0.95 }}
-           whileInView={{ opacity: 1, scale: 1 }}
-           viewport={{ once: true }}
-           className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-brand-purple text-[10px] font-black uppercase tracking-widest mb-4"
-        >
-           <Sparkles className="w-3 h-3" /> Flagship Development
-        </motion.div>
-        <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter">
-          Product <span className="text-gradient">Showcase</span>
+    <section id="projects" className="py-28 px-6 max-w-7xl mx-auto relative z-10 w-full font-sans">
+      <div className="text-center mb-16">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-brand-purple text-[11px] font-black uppercase tracking-widest mb-4">
+          <Sparkles className="w-3.5 h-3.5" /> Flagship Products & Work
+        </div>
+        <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight mb-4">
+          Built & Deployed in <span className="text-gradient">Production</span>
         </h2>
+        <p className="text-base sm:text-lg text-muted/90 max-w-2xl mx-auto leading-relaxed">
+          Explore our flagship AI platforms and technical implementations engineered for real operational leverage.
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Featured: Assistra */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="lg:col-span-2 relative p-12 rounded-[3rem] bg-white/[0.02] border border-white/5 overflow-hidden group"
+      {/* Flagship Products Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        {/* Card 1: Assistra */}
+        <div
+          className="p-8 sm:p-10 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-brand-purple/40 transition-all flex flex-col justify-between group relative overflow-hidden"
         >
-          <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none group-hover:opacity-10 transition-opacity">
-            <Bot className="w-64 h-64 text-white" />
-          </div>
-
-          <div className="relative z-10 space-y-8">
-            <div>
-              <p className="text-xs font-black text-brand-cyan uppercase tracking-[0.3em] mb-2">{assistra.tag}</p>
-              <h3 className="text-5xl md:text-7xl font-black text-white tracking-tighter">{assistra.title}</h3>
+          <div className="relative z-10">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-brand-purple/20 flex items-center justify-center text-brand-purple">
+                  <Bot className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-black text-white">{assistraProduct.name}</h3>
+                  <span className="text-xs text-brand-cyan font-bold">Modular AI Operations Platform</span>
+                </div>
+              </div>
+              <span className="text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                Live Platform
+              </span>
             </div>
-            
-            <p className="text-muted text-lg max-w-xl leading-relaxed">
-              {assistra.description}
+
+            <p className="text-sm text-muted/90 leading-relaxed mb-6">
+              {assistraProduct.description}
             </p>
 
-            <div className="flex flex-wrap gap-6 py-8 border-y border-white/5">
-              {assistra.capabilities.map(cap => (
-                <div key={cap.title} className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
-                    <cap.icon className="w-5 h-5 text-brand-purple" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-white">{cap.title}</p>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-brand-cyan/60">{cap.status}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="pt-4">
-              <motion.a 
-                href={assistra.demoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-white text-black font-bold text-lg hover:bg-white/90 transition-all"
-              >
-                Try Assistra Demo <Play className="w-5 h-5 fill-current" />
-              </motion.a>
+            <div className="space-y-2 mb-8">
+              <span className="text-[10px] font-black uppercase tracking-widest text-white/40 block">Automation Capabilities:</span>
+              <div className="flex flex-wrap gap-2">
+                {assistraProduct.sections.map((sec) => (
+                  <span key={sec.id} className="text-xs px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-white/80">
+                    {sec.title.split("&")[0].trim()}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-        </motion.div>
 
-        {/* Secondary: Systems Grid */}
-        <div className="flex flex-col gap-6">
-          {systems.map((sys, i) => (
-            <motion.div
-              key={sys.title}
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="p-8 rounded-3xl bg-white/[0.01] border border-white/5 hover:border-white/10 transition-all group"
+          <div className="relative z-10 pt-6 border-t border-white/5 flex flex-wrap items-center justify-between gap-4">
+            <Link
+              href="/products/assistra"
+              className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-brand-cyan transition-colors"
             >
-              <div className="flex justify-between items-center mb-4">
-                <h4 className="text-xl font-bold text-white group-hover:text-brand-purple transition-colors">{sys.title}</h4>
-                <span className="text-[9px] font-black uppercase tracking-widest text-white/20 border border-white/10 px-2 py-0.5 rounded-full">{sys.status}</span>
+              <span>Explore Architecture & Sections</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+
+            {assistraProduct.isDemoPublic && Boolean(assistraProduct.demoUrl) && (
+              <a
+                href={assistraProduct.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-bold text-white transition-all"
+              >
+                <span>Live Demo</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
+          </div>
+        </div>
+
+        {/* Card 2: NivoraHQ */}
+        <div
+          className="p-8 sm:p-10 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-brand-cyan/40 transition-all flex flex-col justify-between group relative overflow-hidden"
+        >
+          <div className="relative z-10">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-brand-cyan/20 flex items-center justify-center text-brand-cyan">
+                  <MessageSquare className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-black text-white">{nivoraHQProduct.name}</h3>
+                  <span className="text-xs text-brand-purple font-bold">Social Media Keyword Auto-Reply</span>
+                </div>
               </div>
-              <p className="text-xs text-muted leading-relaxed">{sys.description}</p>
-              <div className="mt-6 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/30 group-hover:text-white transition-colors">
-                View Build <ArrowRight className="w-3 h-3" />
+              <span className="text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30">
+                {nivoraHQProduct.statusBadge}
+              </span>
+            </div>
+
+            <p className="text-sm text-muted/90 leading-relaxed mb-6">
+              {nivoraHQProduct.heroSummary}
+            </p>
+
+            <div className="space-y-2 mb-8">
+              <span className="text-[10px] font-black uppercase tracking-widest text-white/40 block">Safety Guardrails & Modes:</span>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-xs px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-white/80">Human-in-the-Loop Queue</span>
+                <span className="text-xs px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-white/80">Rate Limiting</span>
+                <span className="text-xs px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-white/80">Brand Blocklists</span>
+                <span className="text-xs px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-white/80">Audit Trail</span>
               </div>
-            </motion.div>
-          ))}
+            </div>
+          </div>
+
+          <div className="relative z-10 pt-6 border-t border-white/5 flex flex-wrap items-center justify-between gap-4">
+            <Link
+              href="/products/nivorahq"
+              className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-brand-purple transition-colors"
+            >
+              <span>Try Interactive Simulator</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+
+            <Link
+              href="/products/nivorahq#simulator"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-brand-cyan/10 hover:bg-brand-cyan/20 text-xs font-bold text-brand-cyan transition-all"
+            >
+              <span>Test Rules</span>
+            </Link>
+          </div>
         </div>
       </div>
+
+      {/* Case Studies Strip (if published) */}
+      {publishedCaseStudies.length > 0 && (
+        <div className="pt-8 border-t border-white/5">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
+            <div>
+              <h3 className="text-2xl font-bold text-white">Selected Engineering Case Studies</h3>
+              <p className="text-sm text-muted/80">Real architectures delivered for high-traffic platforms.</p>
+            </div>
+            <Link
+              href="/case-studies"
+              className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-cyan hover:underline"
+            >
+              <span>View All Case Studies</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {publishedCaseStudies.map((cs) => (
+              <Link
+                key={cs.slug}
+                href={`/case-studies/${cs.slug}`}
+                className="p-6 rounded-2xl bg-white/[0.015] border border-white/5 hover:border-white/15 transition-all flex flex-col justify-between group"
+              >
+                <div>
+                  <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-white/40 mb-3">
+                    <span>{cs.industry}</span>
+                    <span>{cs.region}</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-white group-hover:text-brand-cyan transition-colors mb-2">
+                    {cs.title}
+                  </h4>
+                  <p className="text-xs text-muted/80 leading-relaxed mb-4 line-clamp-2">
+                    {cs.summary}
+                  </p>
+                </div>
+
+                {cs.metrics.length > 0 && (
+                  <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
+                    <span className="text-white/60">{cs.metrics[0].label}</span>
+                    <span className="font-bold text-white text-brand-cyan">{cs.metrics[0].value}</span>
+                  </div>
+                )}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

@@ -3,206 +3,289 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { useReducedMotion } from "framer-motion";
+import { Menu, X, ArrowRight, ChevronDown, Bot, MessageSquare } from "lucide-react";
 import { openCalendly } from "./CalendlyProvider";
-import { useFounderMode } from "./FounderContext";
+import { siteConfig } from "@/content/site";
+import { caseStudies } from "@/content/case-studies";
+import { nivoraHQProduct } from "@/content/products/nivorahq";
+import { activateDialogFocus } from "@/lib/dialogFocus";
 
 export function Navigation() {
-    const [scrolled, setScrolled] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { isFounderMode, toggleFounderMode } = useFounderMode();
+  const [scrolled, setScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    // Prevent scroll when menu is open
-    useEffect(() => {
-        if (isMenuOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "unset";
-        }
-    }, [isMenuOpen]);
+  // Prevent scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isMenuOpen]);
 
-    const links = [
-        { name: "Services", href: "#services" },
-        { name: "Process", href: "#process" },
-        { name: "Work", href: "#projects" },
-        { name: "Impact", href: "#impact" },
-        { name: "Contact", href: "#contact" },
-    ];
+  useEffect(() => {
+    const menu = mobileMenuRef.current;
+    if (!isMenuOpen || !menu) return;
+    return activateDialogFocus(menu, () => setIsMenuOpen(false));
+  }, [isMenuOpen]);
 
-    return (
-        <>
-            <motion.header
-                initial={{ y: -100 }}
-                animate={{ y: 0 }}
-                className={cn(
-                    "fixed top-0 left-0 right-0 z-[100] transition-all duration-500 w-full",
-                    scrolled 
-                        ? "py-3 bg-[#050505]/80 backdrop-blur-xl border-b border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)]" 
-                        : "py-5 sm:py-6 bg-transparent"
-                )}
+  const hasPublishedCaseStudies = caseStudies.some((cs) => cs.published);
+
+  const mainLinks = [
+    { name: "Services", href: "/services" },
+    { name: "Process", href: "/services#process" },
+    ...(hasPublishedCaseStudies ? [{ name: "Work", href: "/case-studies" }] : []),
+    { name: "Insights", href: "/insights/from-powerful-llms-to-intelligent-workflows" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
+  ];
+
+  return (
+    <>
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-[100] transition-all duration-300 w-full",
+          scrolled
+            ? "py-3 bg-[#050505]/85 backdrop-blur-xl border-b border-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+            : "py-5 sm:py-6 bg-transparent"
+        )}
+      >
+        {!scrolled && <div className="nav-gradient-blur" />}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex justify-between items-center">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 z-[110] relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan rounded-lg">
+            <span className="text-xl sm:text-2xl font-black tracking-tight text-white group-hover:text-white/90 transition-colors">
+              {siteConfig.name}
+              <span className="text-brand-cyan text-sm sm:text-base font-bold ml-0.5"> studio</span>
+            </span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav
+            aria-label="Main Navigation"
+            className={cn(
+              "hidden lg:flex items-center gap-1 rounded-full px-3 py-1.5 transition-all duration-300 text-xs font-bold tracking-wide",
+              scrolled
+                ? "glass shadow-[0_8px_30px_rgb(0,0,0,0.4)] border-white/10"
+                : "bg-white/[0.03] border border-white/5"
+            )}
+          >
+            <Link
+              href="/services"
+              className="px-3.5 py-1.5 rounded-full hover:bg-white/10 text-white/70 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan"
             >
-                {!scrolled && <div className="nav-gradient-blur" />}
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex justify-between items-center">
-                    <Link href="/" className="flex items-center gap-2 z-[110] relative">
-                        <motion.span 
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.97 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                            className="text-lg sm:text-2xl font-black tracking-tighter text-white whitespace-nowrap"
-                        >
-                            RakriLabs<span className="text-brand-cyan">.ai</span>
-                        </motion.span>
+              Services
+            </Link>
+
+            <Link
+              href="/services#process"
+              className="px-3.5 py-1.5 rounded-full hover:bg-white/10 text-white/70 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan"
+            >
+              Process
+            </Link>
+
+            {hasPublishedCaseStudies && (
+              <Link
+                href="/case-studies"
+                className="px-3.5 py-1.5 rounded-full hover:bg-white/10 text-white/70 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan"
+              >
+                Work
+              </Link>
+            )}
+
+            <Link
+              href="/insights/from-powerful-llms-to-intelligent-workflows"
+              className="px-3.5 py-1.5 rounded-full hover:bg-white/10 text-white/70 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan"
+            >
+              Insights
+            </Link>
+
+            {/* Products Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setIsProductsDropdownOpen(true)}
+              onMouseLeave={() => setIsProductsDropdownOpen(false)}
+            >
+              <button
+                type="button"
+                onClick={() => setIsProductsDropdownOpen((prev) => !prev)}
+                className="px-3.5 py-1.5 rounded-full hover:bg-white/10 text-white/70 hover:text-white transition-all flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan"
+                aria-expanded={isProductsDropdownOpen}
+              >
+                Products <ChevronDown className={cn("w-3.5 h-3.5 transition-transform", isProductsDropdownOpen && "rotate-180")} />
+              </button>
+
+              <AnimatePresence>
+                {isProductsDropdownOpen && (
+                  <motion.div
+                    initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: shouldReduceMotion ? 0 : 0.15 }}
+                    className="absolute top-full left-0 mt-2 w-64 p-2 rounded-2xl bg-[#0c0c0e] border border-white/10 shadow-2xl backdrop-blur-2xl z-[120]"
+                  >
+                    <Link
+                      href="/products/assistra"
+                      onClick={() => setIsProductsDropdownOpen(false)}
+                      className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors group"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-brand-purple/20 flex items-center justify-center text-brand-purple mt-0.5 group-hover:scale-105 transition-transform">
+                        <Bot className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-bold text-white flex items-center gap-1.5">
+                          Assistra <span className="text-[9px] px-1.5 py-0.2 rounded-full bg-brand-cyan/20 text-brand-cyan uppercase">Live</span>
+                        </div>
+                        <p className="text-xs text-muted/70 leading-relaxed mt-0.5">Modular AI Operations Platform</p>
+                      </div>
                     </Link>
 
-                    {/* Desktop Navigation */}
-                    <nav className={cn(
-                        "hidden lg:flex items-center gap-1 rounded-full px-2 py-1.5 transition-all duration-300 text-[11px] font-black uppercase tracking-widest",
-                        scrolled ? "glass shadow-[0_8px_30px_rgb(0,0,0,0.4)] border-white/10" : "bg-transparent border-transparent"
-                    )}>
-                        {links.map((link) => (
-                            <motion.div
-                                key={link.name}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                <Link
-                                    href={link.href}
-                                    className="px-4 py-2 rounded-full hover:bg-white/10 text-white/40 hover:text-white transition-all block"
-                                >
-                                    {link.name}
-                                </Link>
-                            </motion.div>
-                        ))}
-                    </nav>
-
-                    <div className="flex items-center gap-2 sm:gap-6">
-                        {/* Founder Mode Toggle - Hidden on small mobile */}
-                        <div className="hidden sm:flex items-center gap-3 glass-dark border border-white/5 px-4 py-1.5 rounded-full shadow-[inset_0_0_10px_rgba(255,255,255,0.05)]">
-                            <span className={cn("text-[8px] font-black uppercase tracking-widest transition-colors", !isFounderMode ? "text-brand-cyan" : "text-white/20")}>Standard</span>
-                            <motion.button 
-                                whileTap={{ scale: 0.9 }}
-                                onClick={toggleFounderMode}
-                                className="w-10 h-5 rounded-full bg-white/5 border border-white/10 relative p-1 group hover:border-brand-purple transition-all shadow-inner"
-                                aria-label="Toggle Founder Mode"
-                            >
-                                <motion.div 
-                                    animate={{ x: isFounderMode ? 20 : 0 }}
-                                    className={cn(
-                                        "w-3 h-3 rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)]",
-                                        isFounderMode ? "bg-brand-purple shadow-brand-purple/50" : "bg-white/40"
-                                    )} 
-                                />
-                            </motion.button>
-                            <span className={cn("text-[8px] font-black uppercase tracking-widest transition-colors", isFounderMode ? "text-brand-purple" : "text-white/20")}>Founder Mode</span>
-                        </div>
-
-                        {/* CTA Button - Desktop & Mobile (Compact version on mobile) */}
-                        <motion.button
-                            whileHover={{ scale: 1.02, y: -1 }}
-                            whileTap={{ scale: 0.97 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                            onClick={openCalendly}
-                            className="glow-border px-3 sm:px-6 py-2 sm:py-2.5 rounded-full text-[9px] sm:text-xs font-black uppercase tracking-widest bg-white text-black hover:bg-white/90 transition-all shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
-                        >
-                            Book Call
-                        </motion.button>
-
-                        {/* Hamburger Menu Toggle */}
-                        <motion.button 
-                            whileTap={{ scale: 0.9 }}
-                            className="lg:hidden z-[110] relative p-1.5 sm:p-2 text-white hover:bg-white/5 rounded-full transition-colors"
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
-                        >
-                            {isMenuOpen ? <X size={20} className="sm:w-6 sm:h-6" /> : <Menu size={20} className="sm:w-6 sm:h-6" />}
-                        </motion.button>
-                    </div>
-                </div>
-            </motion.header>
-
-            {/* Mobile Menu Overlay */}
-            <AnimatePresence>
-                {isMenuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, x: "100%" }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: "100%" }}
-                        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                        className="fixed inset-0 z-[90] lg:hidden bg-[#050505]/95 backdrop-blur-2xl flex flex-col justify-center items-center p-8"
+                    <Link
+                      href="/products/nivorahq"
+                      onClick={() => setIsProductsDropdownOpen(false)}
+                      className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors group mt-1"
                     >
-                        {/* Background Decorative Gradients */}
-                        <div className="absolute top-1/4 -right-20 w-64 h-64 bg-brand-purple/20 rounded-full blur-[120px] pointer-events-none" />
-                        <div className="absolute bottom-1/4 -left-20 w-64 h-64 bg-brand-cyan/20 rounded-full blur-[120px] pointer-events-none" />
-
-                        <nav className="flex flex-col items-center gap-8 w-full max-w-sm">
-                            {links.map((link, i) => (
-                                <motion.div
-                                    key={link.name}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.1 * i, ease: [0.22, 1, 0.36, 1] }}
-                                    className="w-full text-center"
-                                >
-                                    <Link
-                                        href={link.href}
-                                        onClick={() => setIsMenuOpen(false)}
-                                        className="text-3xl sm:text-4xl font-black text-white hover:text-brand-cyan transition-colors tracking-tighter block py-2"
-                                    >
-                                        {link.name}
-                                    </Link>
-                                </motion.div>
-                            ))}
-                            
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: links.length * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                                className="w-full pt-8 flex flex-col gap-4"
-                            >
-                                <motion.button
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.97 }}
-                                    onClick={() => {
-                                        setIsMenuOpen(false);
-                                        openCalendly();
-                                    }}
-                                    className="w-full py-5 rounded-2xl bg-white text-black text-xl font-black uppercase tracking-widest flex items-center justify-center gap-3 transition-transform"
-                                >
-                                    Book Call <ArrowRight size={20} />
-                                </motion.button>
-                                
-                                {/* Founder Mode Toggle for Mobile */}
-                                <div className="sm:hidden flex items-center justify-between p-4 glass rounded-2xl border border-white/10 w-full">
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/60">Founder Mode</span>
-                                    <motion.button 
-                                        whileTap={{ scale: 0.9 }}
-                                        onClick={toggleFounderMode}
-                                        className="w-12 h-6 rounded-full bg-white/5 border border-white/10 relative p-1 transition-all"
-                                        aria-label="Toggle Founder Mode"
-                                    >
-                                        <motion.div 
-                                            animate={{ x: isFounderMode ? 24 : 0 }}
-                                            className={cn(
-                                                "w-4 h-4 rounded-full",
-                                                isFounderMode ? "bg-brand-purple shadow-[0_0_15px_rgba(139,92,246,0.6)]" : "bg-white/40"
-                                            )} 
-                                        />
-                                    </motion.button>
-                                </div>
-                            </motion.div>
-                        </nav>
-                    </motion.div>
+                      <div className="w-8 h-8 rounded-lg bg-brand-cyan/20 flex items-center justify-center text-brand-cyan mt-0.5 group-hover:scale-105 transition-transform">
+                        <MessageSquare className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-bold text-white flex items-center gap-1.5">
+                          NivoraHQ <span className="text-[9px] px-1.5 py-0.2 rounded-full bg-amber-400/20 text-amber-300 uppercase">{nivoraHQProduct.statusBadge}</span>
+                        </div>
+                        <p className="text-xs text-muted/70 leading-relaxed mt-0.5">Keyword Auto-Reply Engine</p>
+                      </div>
+                    </Link>
+                  </motion.div>
                 )}
-            </AnimatePresence>
-        </>
-    );
+              </AnimatePresence>
+            </div>
+
+            <Link
+              href="/about"
+              className="px-3.5 py-1.5 rounded-full hover:bg-white/10 text-white/70 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan"
+            >
+              About
+            </Link>
+
+            <Link
+              href="/contact"
+              className="px-3.5 py-1.5 rounded-full hover:bg-white/10 text-white/70 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan"
+            >
+              Contact
+            </Link>
+          </nav>
+
+          {/* Right Actions */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={openCalendly}
+              className="px-4 sm:px-5 py-2 rounded-full text-xs font-bold bg-white text-black hover:bg-white/90 transition-all shadow-[0_4px_20px_rgba(255,255,255,0.15)] flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              <span>Book Call</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+
+            {/* Mobile Menu Button */}
+            <button
+              type="button"
+              className="lg:hidden p-2 text-white hover:bg-white/5 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-navigation"
+            >
+              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Menu Drawer */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            ref={mobileMenuRef}
+            id="mobile-navigation"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Main menu"
+            tabIndex={-1}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -20 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.2 }}
+            className="fixed inset-0 z-[95] lg:hidden bg-[#050505]/98 backdrop-blur-2xl flex flex-col justify-center px-8 py-16"
+          >
+            <button
+              type="button"
+              onClick={() => setIsMenuOpen(false)}
+              aria-label="Close menu"
+              className="absolute right-6 top-24 rounded-full p-3 text-white/70 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan"
+            >
+              <X size={22} />
+            </button>
+            <nav className="flex flex-col items-center gap-6 w-full max-w-sm mx-auto text-center">
+              {mainLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-2xl font-black text-white hover:text-brand-cyan transition-colors"
+                >
+                  {link.name}
+                </Link>
+              ))}
+
+              <div className="w-full my-2 h-px bg-white/10" />
+
+              <div className="w-full text-left space-y-3">
+                <span className="text-[10px] font-black uppercase tracking-widest text-white/40 block text-center">Products</span>
+                <Link
+                  href="/products/assistra"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="flex items-center justify-between p-3 rounded-xl bg-white/5 text-white"
+                >
+                  <span className="font-bold text-sm">Assistra (AI Ops)</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-brand-cyan/20 text-brand-cyan">Live</span>
+                </Link>
+                <Link
+                  href="/products/nivorahq"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="flex items-center justify-between p-3 rounded-xl bg-white/5 text-white"
+                >
+                  <span className="font-bold text-sm">NivoraHQ (Keyword Reply)</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300">{nivoraHQProduct.statusBadge}</span>
+                </Link>
+              </div>
+
+              <div className="w-full pt-4">
+                <button
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    openCalendly();
+                  }}
+                  className="w-full py-4 rounded-xl bg-white text-black text-sm font-bold flex items-center justify-center gap-2"
+                >
+                  Book a Strategy Call <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
 }
