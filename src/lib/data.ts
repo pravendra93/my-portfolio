@@ -38,7 +38,13 @@ export const TEAM = [
         name: "Pravendra Kumar",
         role: "Founder & AI Systems Architect",
         bio: "Building AI execution systems for SaaS companies that want structural advantage. Specialist in RAG systems and LLM orchestration with 10+ years of engineering experience.",
-        image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Pravendra" // Placeholder
+        image: "/logo.png"
+    },
+    {
+        name: "Akshay kr Ojha",
+        role: "Founder & Product Engineering Lead",
+        bio: "Software Engineer with 10+ years of experience building scalable web applications and digital products. Founder of RakriLabs, passionate about solving real-world problems through technology, AI, and innovation.",
+        image: "/logo.png"
     },
     {
         name: "Team Member 2",
@@ -82,7 +88,7 @@ export const PROJECTS = [
         highlight: true
     },
     {
-        title: "Unruly — Scraping & Data Platform",
+        title: "Media & Data Intelligence Platform",
         tech: "Node.js, React, Chrome Extension",
         description: "Built a three‑component system to automate collecting message and transaction data. Scraper automation reduced manual data collection time by 85%.",
         highlight: false

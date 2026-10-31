@@ -18,10 +18,10 @@ export function UrgencyStrip() {
         
         <div className="flex items-center gap-6">
           <p className="text-[10px] font-black text-white/70 uppercase tracking-widest hidden md:block">
-            Only <span className="text-white underline decoration-brand-cyan/50 decoration-2 underline-offset-4">2 slots remaining</span> for Q2 development cycle.
+            3 Booking Slots • <span className="text-white underline decoration-brand-cyan/50 decoration-2 underline-offset-4">2 slots remaining</span> for Q4 2026 development cycle.
           </p>
           <span className="text-[10px] font-black text-brand-cyan/50 uppercase tracking-[0.3em] overflow-hidden whitespace-nowrap">
-            — Est. Ship Date: May 2026 — 
+            — Est. Delivery: Nov/Dec 2026 — 
           </span>
         </div>
       </div>

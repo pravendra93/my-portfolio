@@ -36,7 +36,7 @@ export function PlannerNextStep() {
              Book Free AI Audit <ArrowRight className="w-6 h-6 group-hover/btn:translate-x-1 transition-transform" />
            </button>
            <div className="flex items-center gap-4 text-white/30 text-[10px] uppercase font-black tracking-widest">
-              <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-green-500" /> 2 Slots Left for Q2</span>
+              <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-green-500" /> 3 Booking Slots • 2 Slots Remaining for Q4 2026</span>
               <span className="w-[1px] h-3 bg-white/10" />
               <span>No-fluff call</span>
            </div>

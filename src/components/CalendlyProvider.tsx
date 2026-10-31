@@ -1,17 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { PreQualModal } from "./PreQualModal";
+
+const emptySubscribe = () => () => {};
 
 export function CalendlyProvider() {
   const [isPreQualOpen, setIsPreQualOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
-  // The Zoho Bookings Link provided by the user
-  const ZOHO_BOOKING_LINK = "https://rakrilabs.zohobookings.in/#/421636000000040050";
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
 
   useEffect(() => {
-    setMounted(true);
     const handleOpen = () => setIsPreQualOpen(true);
     window.addEventListener("open_calendly", handleOpen);
     return () => window.removeEventListener("open_calendly", handleOpen);
@@ -19,10 +22,6 @@ export function CalendlyProvider() {
 
   const handleConfirmed = () => {
     setIsPreQualOpen(false);
-    // After pre-qualification, open Zoho Bookings
-    if (typeof window !== "undefined") {
-      window.open(ZOHO_BOOKING_LINK, "_blank");
-    }
   };
 
   if (!mounted) return null;
@@ -39,6 +38,12 @@ export function CalendlyProvider() {
 export const openCalendly = (e?: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
   if (e) e.preventDefault();
   if (typeof window !== "undefined") {
+    try {
+      // Lazy track event
+      import("@/lib/analytics").then((m) => {
+        m.trackEvent({ name: "book_call_clicked", props: { source: "header_or_cta" } });
+      });
+    } catch {}
     window.dispatchEvent(new Event("open_calendly"));
   }
 };
