@@ -1,6 +1,6 @@
 "use client";
 
-import { Bot, MessageSquare, ArrowRight, Sparkles, ExternalLink } from "lucide-react";
+import { Bot, MessageSquare, ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { assistraProduct } from "@/content/products/assistra";
 import { nivoraHQProduct } from "@/content/products/nivorahq";
@@ -16,10 +16,10 @@ export function Showcase() {
           <Sparkles className="w-3.5 h-3.5" /> Flagship Products & Work
         </div>
         <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight mb-4">
-          Built & Deployed in <span className="text-gradient">Production</span>
+          Selected <span className="text-gradient">Engineering Work</span>
         </h2>
         <p className="text-base sm:text-lg text-muted/90 max-w-2xl mx-auto leading-relaxed">
-          Explore our flagship AI platforms and technical implementations engineered for real operational leverage.
+          Explore RakriLabs product initiatives and project case studies, with each project's status and available evidence stated clearly.
         </p>
       </div>
 
@@ -37,11 +37,11 @@ export function Showcase() {
                 </div>
                 <div>
                   <h3 className="text-2xl font-black text-white">{assistraProduct.name}</h3>
-                  <span className="text-xs text-brand-cyan font-bold">Modular AI Operations Platform</span>
+                  <span className="text-xs text-brand-cyan font-bold">AI Knowledge Assistant</span>
                 </div>
               </div>
-              <span className="text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-                Live Platform
+              <span className="text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-amber-400/10 text-amber-300 border border-amber-400/20">
+                Coming Soon
               </span>
             </div>
 
@@ -49,38 +49,17 @@ export function Showcase() {
               {assistraProduct.description}
             </p>
 
-            <div className="space-y-2 mb-8">
-              <span className="text-[10px] font-black uppercase tracking-widest text-white/40 block">Automation Capabilities:</span>
-              <div className="flex flex-wrap gap-2">
-                {assistraProduct.sections.map((sec) => (
-                  <span key={sec.id} className="text-xs px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-white/80">
-                    {sec.title.split("&")[0].trim()}
-                  </span>
-                ))}
-              </div>
-            </div>
+            <p className="text-xs text-white/55 mb-8">Read the engineering case study for the project-brief architecture. The public product is not live.</p>
           </div>
 
           <div className="relative z-10 pt-6 border-t border-white/5 flex flex-wrap items-center justify-between gap-4">
             <Link
-              href="/products/assistra"
+              href="/case-studies/assistra-knowledge-assistant"
               className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-brand-cyan transition-colors"
             >
-              <span>Explore Architecture & Sections</span>
+              <span>Read the Engineering Case Study</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
-
-            {assistraProduct.isDemoPublic && Boolean(assistraProduct.demoUrl) && (
-              <a
-                href={assistraProduct.demoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-bold text-white transition-all"
-              >
-                <span>Live Demo</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            )}
           </div>
         </div>
 
@@ -144,7 +123,7 @@ export function Showcase() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
             <div>
               <h3 className="text-2xl font-bold text-white">Selected Engineering Case Studies</h3>
-              <p className="text-sm text-muted/80">Real architectures delivered for high-traffic platforms.</p>
+              <p className="text-sm text-muted/80">Client work and product engineering concepts, with evidence notes on each case study.</p>
             </div>
             <Link
               href="/case-studies"
@@ -165,7 +144,7 @@ export function Showcase() {
                 <div>
                   <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-white/40 mb-3">
                     <span>{cs.industry}</span>
-                    <span>{cs.region}</span>
+                    {cs.projectStatus && <span>{cs.projectStatus}</span>}
                   </div>
                   <h4 className="text-lg font-bold text-white group-hover:text-brand-cyan transition-colors mb-2">
                     {cs.title}
