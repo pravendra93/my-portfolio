@@ -147,9 +147,9 @@ export function Navigation() {
                       </div>
                       <div>
                         <div className="text-sm font-bold text-white flex items-center gap-1.5">
-                          Assistra <span className="text-[9px] px-1.5 py-0.2 rounded-full bg-brand-cyan/20 text-brand-cyan uppercase">Live</span>
+                          Assistra <span className="text-[9px] px-1.5 py-0.2 rounded-full bg-amber-400/15 text-amber-300 uppercase">Coming Soon</span>
                         </div>
-                        <p className="text-xs text-muted/70 leading-relaxed mt-0.5">Modular AI Operations Platform</p>
+                        <p className="text-xs text-muted/70 leading-relaxed mt-0.5">AI Knowledge Assistant</p>
                       </div>
                     </Link>
 
@@ -258,8 +258,8 @@ export function Navigation() {
                   onClick={() => setIsMenuOpen(false)}
                   className="flex items-center justify-between p-3 rounded-xl bg-white/5 text-white"
                 >
-                  <span className="font-bold text-sm">Assistra (AI Ops)</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-brand-cyan/20 text-brand-cyan">Live</span>
+                  <span className="font-bold text-sm">Assistra (AI Knowledge Assistant)</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300">Coming Soon</span>
                 </Link>
                 <Link
                   href="/products/nivorahq"
