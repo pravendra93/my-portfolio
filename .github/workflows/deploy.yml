@@ -80,7 +80,7 @@ jobs:
 
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} --password-stdin
 
-            cd /home/my-portfolio
+            cd /home/deploy/my-portfolio
 
             echo "Deploying image: $IMAGE:$TAG"
 
