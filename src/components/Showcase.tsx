@@ -84,7 +84,7 @@ export function Showcase() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
             <div>
               <h3 className="text-2xl font-bold text-white">Selected Engineering Case Studies</h3>
-              <p className="text-sm text-muted/80">Real architectures delivered for high-traffic platforms.</p>
+              <p className="text-sm text-muted/80">Client work and product engineering concepts, with evidence notes on each case study.</p>
             </div>
             <Link
               href="/case-studies"
@@ -105,7 +105,7 @@ export function Showcase() {
                 <div>
                   <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-white/40 mb-3">
                     <span>{cs.industry}</span>
-                    <span>{cs.region}</span>
+                    {cs.projectStatus && <span>{cs.projectStatus}</span>}
                   </div>
                   <h4 className="text-lg font-bold text-white group-hover:text-brand-cyan transition-colors mb-2">
                     {cs.title}

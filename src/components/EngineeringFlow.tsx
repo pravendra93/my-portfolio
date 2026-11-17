@@ -24,7 +24,7 @@ export function EngineeringFlow({
       >
         {nodes.map((node, index) => (
           <Fragment key={`${index}-${node}`}>
-            <li className={`flex min-w-0 flex-col ${compact ? "xl:flex-1 xl:flex-row xl:items-center" : "lg:flex-1 lg:flex-row lg:items-center"}`}>
+            <li className={`flex min-w-0 flex-col ${compact ? "xl:flex-1 xl:flex-row xl:items-stretch" : "lg:flex-1 lg:flex-row lg:items-stretch"}`}>
               <div className={`flex min-h-14 min-w-0 flex-1 items-center gap-3 rounded-xl border border-white/10 bg-gradient-to-br from-white/[0.065] to-white/[0.015] px-3 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] ${compact ? "xl:min-h-[4.5rem] xl:gap-2 xl:px-2.5 xl:py-2" : "lg:min-h-[5.25rem]"}`}>
                 <span className="shrink-0 font-mono text-[10px] font-semibold tracking-wide text-brand-cyan/80">
                   {String(index + 1).padStart(2, "0")}

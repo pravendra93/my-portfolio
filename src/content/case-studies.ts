@@ -9,16 +9,24 @@ export interface CaseStudy {
   title: string;
   clientLabel: string;
   permission: "named" | "anonymised";
-  industry: "Fintech" | "SaaS" | "Sports Tech" | "Enterprise Ops" | "Media & Data";
-  service: "AI Agents" | "RAG & Document Search" | "30-Day MVP" | "Full-Stack System";
-  region: "North America" | "Europe" | "Australia & NZ" | "Middle East" | "Global";
-  timeline: string;
-  teamSize: string;
+  industry: "Fintech" | "SaaS" | "Sports Tech" | "Enterprise Ops" | "Media & Data" | "Digital Publishing";
+  service: "AI Agents" | "RAG & Document Search" | "30-Day MVP" | "Full-Stack System" | "Web Platform Modernization";
+  region: "North America" | "Europe" | "Australia & NZ" | "Middle East" | "Global" | "Not specified";
+  timeline?: string;
+  teamSize?: string;
+  projectKind?: "Client engagement" | "RakriLabs product";
+  projectStatus?: "Completed" | "Coming Soon";
+  liveUrl?: string;
   summary: string;
   challenge: string;
   solution: string;
   architectureSteps: string[];
+  architectureLabel?: string;
+  architectureFlow?: { label: string; nodes: string[] };
   techStack: string[];
+  techStackLabel?: string;
+  evidenceNote?: string;
+  detailSections?: { title: string; body: string; points?: string[] }[];
   metrics: CaseStudyMetric[];
   quote?: {
     text: string;
@@ -127,6 +135,100 @@ export const caseStudies: CaseStudy[] = [
         source: "measured by us",
       },
     ],
+    published: true,
+  },
+  {
+    slug: "newageislam",
+    title: "NewAgeIslam — Digital Publishing Platform",
+    clientLabel: "NewAgeIslam",
+    permission: "named",
+    projectKind: "Client engagement",
+    projectStatus: "Completed",
+    liveUrl: "https://newageislam.com",
+    industry: "Digital Publishing",
+    service: "Web Platform Modernization",
+    region: "Not specified",
+    summary: "NewAgeIslam is an online publication covering Islamic thought, current affairs, and dialogue. Existing RakriLabs portfolio notes record a completed modernization of its legacy website.",
+    challenge: "The recorded engagement focused on rebuilding an established publication website from a legacy implementation.",
+    solution: "Existing portfolio notes describe a server-rendered rebuild. The original project repository is not available in this workspace, so framework-level details and measured outcomes are not asserted here.",
+    architectureSteps: [
+      "Modernization of the existing NewAgeIslam publication website, as recorded in the portfolio notes.",
+      "The notes identify a server-rendered approach; the implementation source is not available here for independent verification.",
+      "The completed project is linked to the live publication website.",
+    ],
+    architectureLabel: "Recorded project scope",
+    techStack: [],
+    evidenceNote: "The source project and measurement records are not in this workspace. No traffic or performance metrics are included.",
+    metrics: [],
+    published: true,
+  },
+  {
+    slug: "assistra-knowledge-assistant",
+    title: "Assistra — Organizational Knowledge Assistant",
+    clientLabel: "RakriLabs product initiative",
+    permission: "named",
+    projectKind: "RakriLabs product",
+    projectStatus: "Coming Soon",
+    industry: "Enterprise Ops",
+    service: "RAG & Document Search",
+    region: "Not specified",
+    summary: "An upcoming AI knowledge assistant concept for asking natural-language questions across organizational documents and knowledge sources. Its engineering case study is available now; the public product is not live.",
+    challenge: "Useful organizational information can be distributed across documents and other knowledge sources, making it difficult for people to find relevant context through a single question.",
+    solution: "The supplied project brief describes a Retrieval-Augmented Generation (RAG) approach: retrieve relevant indexed context for a question, then pass that context to a language model to draft a response. This is not model training or fine-tuning on private documents.",
+    architectureSteps: [
+      "Users upload organizational documents and knowledge sources.",
+      "Celery workers process ingestion tasks asynchronously so uploads do not hold up normal interaction.",
+      "Documents are prepared into text segments and embedded, as described in the project brief.",
+      "PostgreSQL with pgvector stores embeddings and supports semantic similarity retrieval.",
+      "The question flow retrieves relevant organizational context for the prompt.",
+      "OpenAI GPT-4o mini generates a response grounded in the retrieved context.",
+      "The chatbot returns the generated response to the user.",
+    ],
+    architectureLabel: "Project-brief architecture · implementation not verified in this repository",
+    architectureFlow: {
+      label: "Illustrative Assistra knowledge assistant pipeline",
+      nodes: [
+        "Document upload",
+        "Celery processing",
+        "Text segments & embeddings",
+        "PostgreSQL + pgvector",
+        "Context retrieval",
+        "GPT-4o mini",
+        "Chat response",
+      ],
+    },
+    techStack: ["Retrieval-Augmented Generation", "PostgreSQL", "pgvector", "Celery", "OpenAI GPT-4o mini"],
+    techStackLabel: "Technologies named in the project brief",
+    evidenceNote: "The Assistra backend repository is not available in this workspace. The architecture and stack below reflect the supplied project brief, not independently verified implementation or production deployment.",
+    detailSections: [
+      {
+        title: "Key technical decisions",
+        body: "The brief separates document preparation from question answering and uses retrieval to select context at query time.",
+        points: [
+          "RAG uses retrieved organizational information to ground a response instead of relying only on pretrained model knowledge.",
+          "pgvector keeps vector storage and similarity search within PostgreSQL.",
+          "Celery moves potentially long ingestion work into asynchronous background processing.",
+          "GPT-4o mini is specified to generate responses from retrieved context.",
+        ],
+      },
+      {
+        title: "Background processing with Celery",
+        body: "The project brief assigns ingestion and document-processing tasks to Celery workers. This separates those potentially time-consuming tasks from normal chatbot interactions; worker configuration and runtime behavior could not be checked in this repository.",
+      },
+      {
+        title: "RAG and semantic retrieval with pgvector",
+        body: "The described flow prepares document text, creates embeddings, stores them in PostgreSQL with pgvector, and retrieves relevant context for a user question. It does not train or fine-tune a model on the organization's documents.",
+      },
+      {
+        title: "GPT-4o mini for answer generation",
+        body: "The brief specifies OpenAI GPT-4o mini as the answer-generation model. The intended input is the user question plus retrieved organizational context; deployment, prompt design, and response evaluation are not verified here.",
+      },
+      {
+        title: "Current status and next steps",
+        body: "Assistra is marked Coming Soon. This case study documents the project brief and its proposed architecture; it does not claim a live product or verified production implementation.",
+      },
+    ],
+    metrics: [],
     published: true,
   },
   {
