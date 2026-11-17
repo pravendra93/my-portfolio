@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Twitter, Linkedin, Github } from "lucide-react";
 import { siteConfig } from "@/content/site";
+import { assistraProduct } from "@/content/products/assistra";
 import { QuarterBadge } from "./QuarterBadge";
 
 export function Footer() {
@@ -40,7 +41,9 @@ export function Footer() {
           <div>
             <h4 className="text-xs font-black uppercase tracking-widest text-white/40 mb-3">Products</h4>
             <ul className="space-y-2 text-white/70">
-              <li><Link href="/products/assistra" className="hover:text-white transition-colors">Assistra (AI Ops)</Link></li>
+              {assistraProduct.published && (
+                <li><Link href="/products/assistra" className="hover:text-white transition-colors">Assistra (AI Ops)</Link></li>
+              )}
               <li><Link href="/products/nivorahq" className="hover:text-white transition-colors">NivoraHQ (Keyword Reply)</Link></li>
             </ul>
           </div>

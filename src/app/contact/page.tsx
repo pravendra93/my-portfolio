@@ -8,7 +8,7 @@ import { generatePageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = generatePageMetadata({
   title: "Contact RakriLabs",
-  description: "Share your AI engineering project requirements with RakriLabs or book a qualified discovery call.",
+  description: "Tell RakriLabs what you want to build, fix, or add AI to. Book a free call or send a message.",
   path: "/contact",
 });
 

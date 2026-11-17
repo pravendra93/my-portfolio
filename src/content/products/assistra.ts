@@ -29,7 +29,9 @@ export interface AssistraProductConfig {
 }
 
 export const assistraProduct: AssistraProductConfig = {
-  published: true,
+  // Hidden site-wide while Assistra is offline. Set to true to restore
+  // the product page, nav/footer links, and sitemap entry.
+  published: false,
   name: "Assistra",
   tagline: "Autonomous AI Orchestration for Modern SaaS Teams",
   description: "Assistra is our production-tested modular AI operations platform. Built for engineering and operations leaders who need to deploy voice, conversational triage, and automated background execution without months of pipeline plumbing.",

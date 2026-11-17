@@ -14,7 +14,7 @@ export function PricingSection() {
     <section id="pricing" className="scroll-mt-28 py-24 px-6 max-w-7xl mx-auto relative z-10 w-full">
       <div className="text-center mb-20">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-brand-cyan text-[11px] font-black uppercase tracking-widest mb-4">
-          <Sparkles className="w-3.5 h-3.5" /> Predictable Engagements
+          <Sparkles className="w-3.5 h-3.5" /> Pricing
         </div>
         <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight mb-4">
           {pricingConfig.introHeading}
@@ -36,7 +36,7 @@ export function PricingSection() {
           >
             {tier.highlight && (
               <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-1 rounded-full bg-brand-purple text-white text-[10px] font-black uppercase tracking-widest shadow-md">
-                Most Popular for B2B Teams
+                Recommended
               </div>
             )}
 
@@ -73,7 +73,7 @@ export function PricingSection() {
                     : "bg-white/5 border border-white/10 text-white hover:bg-white/10"
                 }`}
               >
-                <span>Book Sprint Discovery</span>
+                <span>Book a call</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>

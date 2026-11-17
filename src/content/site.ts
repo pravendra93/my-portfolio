@@ -38,7 +38,7 @@ export const siteConfig: SiteConfig = {
   bookingUrl: process.env.NEXT_PUBLIC_BOOKING_URL || "https://rakrilabs.zohobookings.in/#/421636000000040050",
   demo: {
     url: process.env.NEXT_PUBLIC_DEMO_URL || "https://stage.assistra.app/",
-    isPublic: true,
+    isPublic: false, // Assistra is offline; set back to true when the demo is up again
     label: "Try Assistra Demo",
   },
   socials: {

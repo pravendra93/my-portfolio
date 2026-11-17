@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/Footer";
@@ -160,6 +161,8 @@ function SectionComponent({ sec, idx }: { sec: AssistraSection; idx: number }) {
 }
 
 export default function AssistraProductPage() {
+  if (!assistraProduct.published) notFound();
+
   return (
     <>
       <MouseAura />

@@ -10,6 +10,7 @@ import { openCalendly } from "./CalendlyProvider";
 import { siteConfig } from "@/content/site";
 import { caseStudies } from "@/content/case-studies";
 import { nivoraHQProduct } from "@/content/products/nivorahq";
+import { assistraProduct } from "@/content/products/assistra";
 import { activateDialogFocus } from "@/lib/dialogFocus";
 
 export function Navigation() {
@@ -137,6 +138,7 @@ export function Navigation() {
                     transition={{ duration: shouldReduceMotion ? 0 : 0.15 }}
                     className="absolute top-full left-0 mt-2 w-64 p-2 rounded-2xl bg-[#0c0c0e] border border-white/10 shadow-2xl backdrop-blur-2xl z-[120]"
                   >
+                    {assistraProduct.published && (
                     <Link
                       href="/products/assistra"
                       onClick={() => setIsProductsDropdownOpen(false)}
@@ -152,6 +154,7 @@ export function Navigation() {
                         <p className="text-xs text-muted/70 leading-relaxed mt-0.5">Modular AI Operations Platform</p>
                       </div>
                     </Link>
+                    )}
 
                     <Link
                       href="/products/nivorahq"
@@ -253,6 +256,7 @@ export function Navigation() {
 
               <div className="w-full text-left space-y-3">
                 <span className="text-[10px] font-black uppercase tracking-widest text-white/40 block text-center">Products</span>
+                {assistraProduct.published && (
                 <Link
                   href="/products/assistra"
                   onClick={() => setIsMenuOpen(false)}
@@ -261,6 +265,7 @@ export function Navigation() {
                   <span className="font-bold text-sm">Assistra (AI Ops)</span>
                   <span className="text-[10px] px-2 py-0.5 rounded-full bg-brand-cyan/20 text-brand-cyan">Live</span>
                 </Link>
+                )}
                 <Link
                   href="/products/nivorahq"
                   onClick={() => setIsMenuOpen(false)}

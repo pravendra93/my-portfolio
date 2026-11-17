@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Calendar, Mail, Loader2, CheckCircle2, ArrowRight, ShieldCheck, Clock, Globe } from "lucide-react";
 import { openCalendly } from "./CalendlyProvider";
 import { siteConfig } from "@/content/site";
-import { QuarterBadge } from "./QuarterBadge";
+import { offers, foundingOffer } from "@/content/pricing";
 import { createInitialContactFormData, createSendAnotherInquiryState } from "@/lib/contactFormState";
 
 interface EngagementProps {
@@ -71,13 +72,13 @@ export function Engagement({ headingLevel = "h2" }: EngagementProps) {
     <section id="contact" className="scroll-mt-28 py-24 px-6 max-w-6xl mx-auto relative z-10 w-full mb-8">
       <div className="text-center mb-16">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-brand-cyan text-[11px] font-black uppercase tracking-widest mb-4">
-          <Calendar className="w-3.5 h-3.5" /> Book a Discovery Call
+          <Calendar className="w-3.5 h-3.5" /> Get in touch
         </div>
         <Heading className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight mb-4">
-          Ready to Ship Your <span className="text-gradient">Flagship AI Roadmap?</span>
+          Tell us what you <span className="text-gradient">want to build or fix</span>
         </Heading>
         <p className="text-base sm:text-lg text-muted/90 max-w-xl mx-auto leading-relaxed">
-          Discuss your technical specifications directly with RakriLabs. No salespeople, no delays.
+          You&apos;ll hear back from Kumar directly, in plain English. No salespeople, no jargon.
         </p>
       </div>
 
@@ -85,18 +86,25 @@ export function Engagement({ headingLevel = "h2" }: EngagementProps) {
         {/* Left Column: Direct Calendar & Contact Info */}
         <div className="lg:col-span-5 space-y-6">
           <div className="p-8 sm:p-10 rounded-3xl bg-white/[0.03] border border-white/10 relative overflow-hidden">
-            <QuarterBadge variant="pill" className="mb-6" />
+            {foundingOffer.published && foundingOffer.spotsLeft > 0 && (
+              <Link
+                href="/#founding"
+                className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-300/30 bg-amber-300/10 px-3 py-1 text-xs font-bold text-amber-200 hover:bg-amber-300/15"
+              >
+                Founding clients: {foundingOffer.discount} off · {foundingOffer.spotsLeft} of {foundingOffer.spotsTotal} spots left
+              </Link>
+            )}
 
-            <h3 className="text-2xl font-bold text-white mb-2">Reserve Strategy Session</h3>
+            <h3 className="text-2xl font-bold text-white mb-2">Book a free 30-minute call</h3>
             <p className="text-sm text-muted/90 leading-relaxed mb-6">
-              Pick a 20-minute slot to review your architecture, verify feasibility, and estimate your 30-day timeline.
+              Talk through your idea or your app. You&apos;ll get a written scope and a fixed price afterwards, with no pressure to go ahead.
             </p>
 
             <button
               onClick={openCalendly}
               className="w-full py-4 rounded-2xl bg-white text-black font-bold text-sm flex items-center justify-center gap-2 hover:bg-white/90 transition-all shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan"
             >
-              <span>Schedule on Calendar</span>
+              <span>Pick a time</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 
@@ -111,7 +119,7 @@ export function Engagement({ headingLevel = "h2" }: EngagementProps) {
               </div>
               <div className="flex items-center gap-2.5">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Mutual NDA signed prior to code/PRD review.</span>
+                <span>Happy to sign an NDA before you share code or ideas.</span>
               </div>
             </div>
           </div>
@@ -119,7 +127,7 @@ export function Engagement({ headingLevel = "h2" }: EngagementProps) {
           {/* Plain Contact Email */}
           <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 flex items-center justify-between">
             <div>
-              <span className="text-[10px] font-black uppercase tracking-widest text-white/40 block mb-1">Direct Engineering Inbox</span>
+              <span className="text-[10px] font-black uppercase tracking-widest text-white/40 block mb-1">Or email directly</span>
               <a href={`mailto:${siteConfig.contactEmail}`} className="text-sm font-mono text-white hover:text-brand-cyan transition-colors">
                 {siteConfig.contactEmail}
               </a>
@@ -134,10 +142,10 @@ export function Engagement({ headingLevel = "h2" }: EngagementProps) {
           </div>
         </div>
 
-        {/* Right Column: Structured B2B Project Inquiry Form */}
+        {/* Right Column: Project inquiry form */}
         <div className="lg:col-span-7 p-8 sm:p-10 rounded-3xl bg-white/[0.02] border border-white/5 relative">
-          <h3 className="text-xl font-bold text-white mb-2">Send Project Brief</h3>
-          <p className="text-xs text-muted/80 mb-6">Receive a technical response and feasibility estimate within 12 hours.</p>
+          <h3 className="text-xl font-bold text-white mb-2">Send a message</h3>
+          <p className="text-xs text-muted/80 mb-6">We reply within one working day with next steps and a rough price.</p>
 
           {isSuccess ? (
             <motion.div
@@ -148,9 +156,9 @@ export function Engagement({ headingLevel = "h2" }: EngagementProps) {
               className="py-12 text-center space-y-4"
             >
               <CheckCircle2 className="w-14 h-14 text-emerald-400 mx-auto" aria-hidden="true" />
-              <h4 className="text-2xl font-bold text-white">Inquiry sent successfully</h4>
+              <h4 className="text-2xl font-bold text-white">Message sent</h4>
               <p className="text-sm text-muted/90 max-w-md mx-auto leading-relaxed">
-                Thank you! Your inquiry has been sent successfully. We&apos;ll get back to you soon.
+                Thanks! Kumar will reply within one working day.
               </p>
               <button
                 type="button"
@@ -162,7 +170,7 @@ export function Engagement({ headingLevel = "h2" }: EngagementProps) {
                 }}
                 className="mt-4 px-6 py-2.5 rounded-full bg-white/10 text-white text-xs font-bold hover:bg-white/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan"
               >
-                Send another inquiry
+                Send another message
               </button>
             </motion.div>
           ) : (
@@ -189,7 +197,7 @@ export function Engagement({ headingLevel = "h2" }: EngagementProps) {
                     required
                     type="text"
                     maxLength={120}
-                    placeholder="Alex Morgan"
+                    placeholder="Your name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-cyan transition-all"
@@ -198,14 +206,14 @@ export function Engagement({ headingLevel = "h2" }: EngagementProps) {
 
                 <div>
                   <label htmlFor="form-email" className="text-xs font-bold text-white/70 block mb-1.5">
-                    Work Email *
+                    Email *
                   </label>
                   <input
                     id="form-email"
                     required
                     type="email"
                     maxLength={254}
-                    placeholder="alex@company.com"
+                    placeholder="you@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-cyan transition-all"
@@ -216,13 +224,13 @@ export function Engagement({ headingLevel = "h2" }: EngagementProps) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="form-company" className="text-xs font-bold text-white/70 block mb-1.5">
-                    Company / Website
+                    Website, app, or social link
                   </label>
                   <input
                     id="form-company"
                     type="text"
                     maxLength={200}
-                    placeholder="Acme SaaS Inc."
+                    placeholder="yourapp.com or @yourhandle"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                     className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-cyan transition-all"
@@ -251,7 +259,7 @@ export function Engagement({ headingLevel = "h2" }: EngagementProps) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="form-projectType" className="text-xs font-bold text-white/70 block mb-1.5">
-                    Engagement Scope
+                    What do you need?
                   </label>
                   <select
                     id="form-projectType"
@@ -259,17 +267,18 @@ export function Engagement({ headingLevel = "h2" }: EngagementProps) {
                     onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                     className="w-full bg-[#121215] border border-white/10 rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-cyan transition-all"
                   >
-                    <option value="30-Day AI MVP Sprint">30-Day AI MVP Sprint</option>
-                    <option value="Autonomous AI Agent System">Autonomous AI Agent System</option>
-                    <option value="Enterprise RAG Search Engine">Enterprise RAG Search Engine</option>
-                    <option value="Voice AI & Telephony">Voice AI & Telephony</option>
-                    <option value="Technical Architecture Review">Technical Architecture Review</option>
+                    {offers.map((offer) => (
+                      <option key={offer.id} value={offer.label}>
+                        {offer.label} (from {offer.startingPrice})
+                      </option>
+                    ))}
+                    <option value="Not sure yet">Not sure yet</option>
                   </select>
                 </div>
 
                 <div>
                   <label htmlFor="form-budget" className="text-xs font-bold text-white/70 block mb-1.5">
-                    Indicative Budget Range
+                    Rough budget
                   </label>
                   <select
                     id="form-budget"
@@ -277,24 +286,25 @@ export function Engagement({ headingLevel = "h2" }: EngagementProps) {
                     onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                     className="w-full bg-[#121215] border border-white/10 rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-cyan transition-all"
                   >
-                    <option value="$5k - $10k">$5k – $10k (Lean MVP Sprint)</option>
-                    <option value="$10k - $25k">$10k – $25k (Production Agent System)</option>
-                    <option value="$25k - $50k">$25k – $50k (Enterprise Scale)</option>
-                    <option value="$50k+">$50k+ (Comprehensive Partnership)</option>
+                    <option value="Not sure">Not sure yet</option>
+                    <option value="Under $1k">Under $1,000</option>
+                    <option value="$1k - $3k">$1,000 – $3,000</option>
+                    <option value="$3k - $6k">$3,000 – $6,000</option>
+                    <option value="$6k+">$6,000+</option>
                   </select>
                 </div>
               </div>
 
               <div>
                 <label htmlFor="form-message" className="text-xs font-bold text-white/70 block mb-1.5">
-                  Project Context / Technical Challenges
+                  What&apos;s going on?
                 </label>
                 <textarea
                   id="form-message"
                   required
                   rows={4}
                   maxLength={5000}
-                  placeholder="Share a high-level summary of what you need built, existing tech stack, or problem you want automated..."
+                  placeholder="e.g. My course site was built with Lovable and checkout fails on mobile. Or: I have 30k followers and want a paid community app."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-cyan transition-all resize-none"
@@ -323,11 +333,11 @@ export function Engagement({ headingLevel = "h2" }: EngagementProps) {
                 {isSubmitting ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Transmitting Brief...</span>
+                    <span>Sending…</span>
                   </>
                 ) : (
                   <>
-                    <span>Submit Inquiry</span>
+                    <span>Send message</span>
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
