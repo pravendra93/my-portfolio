@@ -7,6 +7,7 @@ import { MouseAura } from "@/components/MouseAura";
 import { siteConfig } from "@/content/site";
 import { generatePageMetadata } from "@/lib/metadata";
 import { QuarterBadge } from "@/components/QuarterBadge";
+import { FounderSection } from "@/components/FounderSection";
 import {
   Globe2,
   CheckCircle2,
@@ -76,6 +77,8 @@ export default function AboutPage() {
               We work with international B2B product and operations teams to scope and build custom AI systems, RAG workflows, integrations, and AI products—with clear deliverables and communication from discovery through handoff.
             </p>
           </div>
+
+          <FounderSection className="mb-24 px-0 py-0 sm:py-0" />
 
           {/* Mission & Who We Help */}
           <section className="mb-24 p-8 sm:p-12 rounded-3xl bg-white/[0.02] border border-white/5">

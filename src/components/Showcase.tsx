@@ -1,8 +1,7 @@
 "use client";
 
-import { Bot, MessageSquare, ArrowRight, Sparkles } from "lucide-react";
+import { MessageSquare, ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
-import { assistraProduct } from "@/content/products/assistra";
 import { nivoraHQProduct } from "@/content/products/nivorahq";
 import { caseStudies } from "@/content/case-studies";
 
@@ -13,57 +12,19 @@ export function Showcase() {
     <section id="projects" className="py-28 px-6 max-w-7xl mx-auto relative z-10 w-full font-sans">
       <div className="text-center mb-16">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-brand-purple text-[11px] font-black uppercase tracking-widest mb-4">
-          <Sparkles className="w-3.5 h-3.5" /> Flagship Products & Work
+          <Sparkles className="w-3.5 h-3.5" /> Products & Work
         </div>
         <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight mb-4">
-          Selected <span className="text-gradient">Engineering Work</span>
+          What we&apos;ve <span className="text-gradient">built</span>
         </h2>
         <p className="text-base sm:text-lg text-muted/90 max-w-2xl mx-auto leading-relaxed">
-          Explore RakriLabs product initiatives and project case studies, with each project's status and available evidence stated clearly.
+          Our own SaaS product, plus engineering work we have delivered for client platforms.
         </p>
       </div>
 
       {/* Flagship Products Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-        {/* Card 1: Assistra */}
-        <div
-          className="p-8 sm:p-10 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-brand-purple/40 transition-all flex flex-col justify-between group relative overflow-hidden"
-        >
-          <div className="relative z-10">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-brand-purple/20 flex items-center justify-center text-brand-purple">
-                  <Bot className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-black text-white">{assistraProduct.name}</h3>
-                  <span className="text-xs text-brand-cyan font-bold">AI Knowledge Assistant</span>
-                </div>
-              </div>
-              <span className="text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-amber-400/10 text-amber-300 border border-amber-400/20">
-                Coming Soon
-              </span>
-            </div>
-
-            <p className="text-sm text-muted/90 leading-relaxed mb-6">
-              {assistraProduct.description}
-            </p>
-
-            <p className="text-xs text-white/55 mb-8">Read the engineering case study for the project-brief architecture. The public product is not live.</p>
-          </div>
-
-          <div className="relative z-10 pt-6 border-t border-white/5 flex flex-wrap items-center justify-between gap-4">
-            <Link
-              href="/case-studies/assistra-knowledge-assistant"
-              className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-brand-cyan transition-colors"
-            >
-              <span>Read the Engineering Case Study</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-
-        {/* Card 2: NivoraHQ */}
+      <div className="max-w-3xl mx-auto mb-16">
+        {/* NivoraHQ (Assistra card removed while Assistra is offline) */}
         <div
           className="p-8 sm:p-10 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-brand-cyan/40 transition-all flex flex-col justify-between group relative overflow-hidden"
         >

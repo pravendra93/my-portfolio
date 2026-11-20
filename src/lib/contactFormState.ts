@@ -16,9 +16,9 @@ export function createInitialContactFormData(): ContactFormData {
     email: "",
     company: "",
     region: "North America (US / Canada)",
-    projectType: "30-Day AI MVP Sprint",
-    budget: "$10k - $25k",
-    timeline: "Immediate (This quarter)",
+    projectType: "Not sure yet",
+    budget: "Not sure",
+    timeline: "",
     message: "",
     website_trap: "",
   };

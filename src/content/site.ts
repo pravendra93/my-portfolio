@@ -37,9 +37,9 @@ export const siteConfig: SiteConfig = {
   workingHoursNote: "Guaranteed 4-5 hours daily working overlap with North America (EST/PST morning), full overlap with Europe/UK (GMT/CET) and Middle East/Gulf (GST), and same-day async coverage for Australia/NZ (AEST).",
   bookingUrl: process.env.NEXT_PUBLIC_BOOKING_URL || "https://rakrilabs.zohobookings.in/#/421636000000040050",
   demo: {
-    url: "",
-    isPublic: false,
-    label: "Assistra · Coming Soon",
+    url: process.env.NEXT_PUBLIC_DEMO_URL || "https://stage.assistra.app/",
+    isPublic: false, // Assistra is offline; set back to true when the demo is up again
+    label: "Try Assistra Demo",
   },
   socials: {
     github: "https://github.com/rakrilabs",

@@ -79,7 +79,7 @@ export const nivoraHQProduct: NivoraProductConfig = {
       systemPrompt: "You are a helpful product specialist. Acknowledge their interest warmly, provide transparent pricing tier starting points ($4.5k - $15k sprints), and invite them to share their project scope for a custom quote.",
       defaultMode: "auto-send",
       exampleInput: "What does it cost to build a full AI agent MVP with your team?",
-      mockGeneratedReply: "Hey! Our dedicated AI MVP sprints start at $4,599 for lean launches, with full production agent architectures at $15k-$25k. We scope every sprint around 30-day deliverables with full code ownership. Drop us a DM or visit rakrilabs.com to discuss your specific roadmap!",
+      mockGeneratedReply: "Hey! Thanks for asking. Bug fixes start at $500, AI features at $1,500, and full product builds at $4,599. You get a fixed price before we start and own 100% of the code. Drop us a DM or visit rakrilabs.com to tell us what you need!",
     },
     {
       id: "rule-support",

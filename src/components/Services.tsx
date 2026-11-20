@@ -15,8 +15,8 @@ const services = [
     ],
     icon: Bot,
     badge: "Operations Leverage",
-    link: "/products/assistra",
-    linkText: "Explore Agent Architecture",
+    link: "/#how-it-works",
+    linkText: "See how our support agent works",
   },
   {
     title: "Enterprise RAG & Search",

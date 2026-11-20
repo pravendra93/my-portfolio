@@ -13,6 +13,7 @@ declare global {
 
 export type AnalyticsEvent =
   | { name: "book_call_clicked"; props?: { source: string } }
+  | { name: "booking_need_selected"; props?: { need: string; budget: string } }
   | { name: "contact_form_submitted"; props?: { region: string; projectType: string } }
   | { name: "case_study_viewed"; props?: { slug: string; industry: string } }
   | { name: "nivora_simulator_used"; props?: { ruleId: string; category: string } }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/Footer";
@@ -14,6 +15,8 @@ export const metadata: Metadata = generatePageMetadata({
 });
 
 export default function AssistraProductPage() {
+  if (!assistraProduct.published) notFound();
+
   return (
     <>
       <MouseAura />

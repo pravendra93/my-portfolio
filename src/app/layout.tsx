@@ -24,10 +24,10 @@ const manrope = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "RakriLabs — Production AI Agents, RAG Systems & 30-Day MVP Sprints",
+    default: "RakriLabs — We Build, Fix & Add AI to Your Product",
     template: "%s | RakriLabs",
   },
-  description: "RakriLabs is an AI engineering studio architecting custom autonomous agent workflows, enterprise RAG systems, and production 30-day SaaS MVPs for global B2B teams.",
+  description: "A small product studio for creators, founders, and entrepreneurs. We build your product, fix your broken app, and add AI where it helps. Fixed prices, 100% code ownership.",
   keywords: [
     "AI engineering studio",
     "Autonomous AI Agents",
@@ -58,8 +58,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: SITE_URL,
-    title: "RakriLabs — Production AI Agents, RAG Systems & 30-Day MVP Sprints",
-    description: "Architecting custom autonomous agent workflows, enterprise RAG systems, and production 30-day SaaS MVPs for global B2B teams with guaranteed code ownership.",
+    title: "RakriLabs — We Build, Fix & Add AI to Your Product",
+    description: "A small product studio for creators, founders, and entrepreneurs. We build your product, fix your broken app, and add AI where it helps. Fixed prices, 100% code ownership.",
     siteName: siteConfig.name,
     images: [
       {
@@ -72,8 +72,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "RakriLabs — Production AI Agents, RAG Systems & 30-Day MVP Sprints",
-    description: "Architecting custom autonomous agent workflows, enterprise RAG systems, and production 30-day SaaS MVPs for global B2B teams.",
+    title: "RakriLabs — We Build, Fix & Add AI to Your Product",
+    description: "A small product studio for creators, founders, and entrepreneurs. We build your product, fix your broken app, and add AI where it helps. Fixed prices, 100% code ownership.",
     images: [`${SITE_URL}/logo.png`],
   },
   icons: {
