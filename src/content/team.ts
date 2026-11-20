@@ -46,12 +46,27 @@ export const teamMembers: TeamMember[] = [
     isFounder: true,
   },
   {
-    name: "Akshay kr Ojha",
-    role: "Founder & Product Engineering Lead",
-    bio: "Software Engineer with 10+ years of experience building scalable web applications and digital products. Founder of RakriLabs, passionate about solving real-world problems through technology, AI, and innovation.",
-    image: "", // Add a real headshot and set its path here
-    // linkedin: "https://www.linkedin.com/in/akshay-kr-ojha-2454a019/",
-    twitter: "https://x.com/pravendra93",
+    name: "Akshay Kumar Ojha",
+    role: "Co-Founder & Tech Lead",
+    bio: "12+ years building scalable web products and backend architectures, collaborating with prominent startups including top unicorns like Shiprocket. Co-founder and Tech Lead at RakriLabs, helping founders build, scale, and integrate practical AI.",
+    image: "/akshay.png",
+    story:
+      "I've spent over 12 years building and scaling products across high-growth startups and tech unicorns, from e-commerce logistics to fintech infrastructure. I co-founded RakriLabs to help founders and engineering teams build reliable, production-ready systems from day one, unblock complex technical debt, and deploy practical AI where it drives genuine business value. You work directly with me from architecture to launch.",
+    highlights: [
+      { value: "12+ yrs", label: "Building and scaling web products" },
+      { value: "Unicorn scale", label: "High-throughput systems at Shiprocket" },
+      { value: "99.9%", label: "Uptime across fintech & logistics platforms" },
+      { value: "10x", label: "Shipping velocity for early & growth-stage teams" },
+    ],
+    career: [
+      { company: "RakriLabs", role: "Co-Founder & Tech Lead", years: "Now" },
+      { company: "US Product Based Startup", role: "Tech Lead", years: "2024 – now" },
+      { company: "LiquiLoans", role: "Lead Software Engineer", years: "2022 – 2024" },
+      { company: "Shiprocket", role: "Senior Software Engineer", years: "2020 – 2022" },
+      { company: "Air Tickets India", role: "Software Engineer", years: "2016 – 2019" },
+      { company: "Kitchen Umbrella", role: "Software Engineer", years: "2014 – 2016" },
+    ],
+    twitter: "https://x.com/Ojhaakshaykumar",
     github: "https://github.com/ojhakumarakshay1",
     published: true,
     isFounder: true,
