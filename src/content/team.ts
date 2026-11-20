@@ -50,7 +50,8 @@ export const teamMembers: TeamMember[] = [
     role: "Founder & Product Engineering Lead",
     bio: "Software Engineer with 10+ years of experience building scalable web applications and digital products. Founder of RakriLabs, passionate about solving real-world problems through technology, AI, and innovation.",
     image: "", // Add a real headshot and set its path here
-    linkedin: "https://www.linkedin.com/in/akshay-kr-ojha-2454a019/",
+    // linkedin: "https://www.linkedin.com/in/akshay-kr-ojha-2454a019/",
+    twitter: "https://x.com/pravendra93",
     github: "https://github.com/ojhakumarakshay1",
     published: true,
     isFounder: true,
