@@ -39,7 +39,7 @@ export const teamMembers: TeamMember[] = [
       { company: "Appy Pie", role: "Software Engineer", years: "2015 – 2016" },
       { company: "Udaan Technologies", role: "Web Developer", years: "2013 – 2015" },
     ],
-    linkedin: "https://www.linkedin.com/in/pravendra93/",
+    // linkedin: "https://www.linkedin.com/in/pravendra93/",
     twitter: "https://x.com/pravendra93",
     github: "https://github.com/pravendra93",
     published: true,
