@@ -1,14 +1,18 @@
-version: "3.9"
-
 services:
   rakrilabs-web:
-    build: .
+    # Run the image the deploy workflow built and pushed. IMAGE_TAG is passed in
+    # by the workflow (the deployed commit SHA); "latest" is only a fallback.
+    # Do NOT use `build: .` here: on the server that reuses an old local image
+    # and silently ignores every new deploy.
+    image: ghcr.io/pravendra93/nextjs:${IMAGE_TAG:-latest}
     container_name: rakrilabs-web
     restart: always
     expose:
       - "3000"
+    # Runtime secrets (ZOHO_EMAIL, ZOHO_APP_PASSWORD, ...) live in this file on
+    # the server. The deploy workflow never writes to it.
     env_file:
-      - .env
+      - app.env
     networks:
       - shared_network
 
