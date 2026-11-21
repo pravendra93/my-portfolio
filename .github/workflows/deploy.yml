@@ -65,7 +65,17 @@ jobs:
         run: |
           docker pull $IMAGE:${{ env.TAG }}
 
-      # 6. Deploy to server
+      # 6. Copy the compose file so the server runs the image built above
+      - name: Copy compose file to Droplet
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: docker-compose.yml
+          target: /home/deploy/my-portfolio
+
+      # 7. Deploy to server
       - name: Deploy to Droplet
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -82,22 +92,28 @@ jobs:
 
             cd /home/deploy/my-portfolio
 
-            echo "Deploying image: $IMAGE:$TAG"
+            # Runtime secrets live in app.env and are never overwritten here.
+            # One-time migration from the old setup, where secrets sat in .env.
+            if [ ! -f app.env ]; then
+              if [ -f .env ]; then grep -v '^IMAGE_TAG=' .env > app.env || true; else touch app.env; fi
+            fi
+            grep -q '^ZOHO_EMAIL=' app.env || echo "WARNING: ZOHO_EMAIL is missing from app.env; contact and audit forms cannot send email"
 
-            # Pull exact image version
+            echo "Deploying image: $IMAGE:$TAG"
             docker pull $IMAGE:$TAG
 
-            # Inject tag into compose
-            echo "IMAGE_TAG=$TAG" > .env
+            # Run exactly this tag (compose reads IMAGE_TAG from the shell)
+            IMAGE_TAG=$TAG docker compose up -d --remove-orphans
 
-            # Deploy updated container
-            docker compose up -d
+            # Fail the job if the container is not running the new image
+            RUNNING=$(docker inspect rakrilabs-web --format '{{ '{{' }}.Config.Image{{ '}}' }}')
+            echo "Container is running: $RUNNING"
+            if [ "$RUNNING" != "$IMAGE:$TAG" ]; then
+              echo "ERROR: expected $IMAGE:$TAG"
+              exit 1
+            fi
 
-            # Show running containers
             docker compose ps
-
-            # Show latest logs
-            # docker compose logs --tail=50
 
             # Cleanup dangling images
             docker image prune -f
