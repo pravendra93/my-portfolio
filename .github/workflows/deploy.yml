@@ -106,7 +106,7 @@ jobs:
             IMAGE_TAG=$TAG docker compose up -d --remove-orphans
 
             # Fail the job if the container is not running the new image
-            RUNNING=$(docker inspect rakrilabs-web --format '{{ '{{' }}.Config.Image{{ '}}' }}')
+            RUNNING=$(docker inspect rakrilabs-web --format '{{.Config.Image}}')
             echo "Container is running: $RUNNING"
             if [ "$RUNNING" != "$IMAGE:$TAG" ]; then
               echo "ERROR: expected $IMAGE:$TAG"
